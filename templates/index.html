@@ -1,5 +1,45 @@
-
 {% extends "base.html" %}
+
 {% block content %}
-<h1>Hola 👋</h1>
+<div class="dashboard-wrapper">
+    
+    <header class="main-header">
+        <div class="profile-summary">
+            <h1 id="ui-name"></h1> <p id="ui-label" class="tech-label"></p>
+        </div>
+        
+        <div class="header-controls">
+            <button id="lang-btn" class="btn-industrial-toggle">
+            <span id="lang-label">EN</span> </button>
+        </div>
+    </header>
+
+    <div class="dashboard-layout">
+        <aside class="tech-sidebar">
+            <nav>
+                <a href="#projects" class="nav-link">
+                    <span id="nav-projects"></span>
+                </a>
+                <a href="#skills" class="nav-link">
+                    <span id="nav-skills"></span>
+                </a>
+            </nav>
+        </aside>
+
+        <main class="data-view">
+            
+            <section id="projects" class="project-grid">
+                </section>
+
+            <hr class="divider">
+
+            <section id="skills" class="skills-section">
+                <h2 id="ui-skills-title"></h2>
+                <div id="skills-display" class="skills-grid"></div>
+            </section>
+
+        </main>
+    </div>
+
+</div>
 {% endblock %}
