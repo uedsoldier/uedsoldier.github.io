@@ -1,3 +1,4 @@
+import json
 from jinja2 import Environment, FileSystemLoader
 from pathlib import Path
 import shutil
@@ -14,6 +15,11 @@ TEMPLATES_DIR = BASE_DIR / 'templates'
 STATIC_SRC = BASE_DIR / 'static'
 DIST_DIR = BASE_DIR / 'dist'
 STATIC_DST = DIST_DIR / 'static'
+DATA_FILE = BASE_DIR / 'data' / 'portfolio.json'
+
+# Load data
+with open(DATA_FILE, 'r', encoding='utf-8') as f:
+    portfolio_data = json.load(f)
 
 # =========================
 # Jinja environment
@@ -38,8 +44,8 @@ env.globals['static'] = static
 # =========================
 templates = {
     'index.html': {
-        'title': 'Resume',
-        'link': 'https://google.com',
+        'title': f"Portfolio | {portfolio_data['languages']['es']['name']}",
+        'data': portfolio_data,
     },
 }
 
