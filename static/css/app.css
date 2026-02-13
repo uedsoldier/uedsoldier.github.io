@@ -1,11 +1,18 @@
 /* --- Variables Industriales --- */
 :root {
-    --bg-color: #0d1117;       /* Fondo profundo tipo VS Code */
-    --card-bg: #161b22;        /* Gris oscuro para contenedores */
-    --accent-color: #2ea043;   /* Verde terminal/ingeniería */
-    --text-main: #c9d1d9;      /* Texto suave para no cansar la vista */
-    --text-dim: #8b949e;       /* Texto secundario/especificaciones */
-    --border-color: #30363d;   /* Bordes definidos pero sutiles */
+    /* Fondo: Azul-gris muy profundo (Abyss/Darcula mix) */
+    --bg-color: #0b0e14;       
+    --card-bg: #151921;        
+    
+    /* Acento: Naranja Ámbar (Industrial/Gruvbox) o Azul Glaciar */
+    --accent-color: #e67e22;   /* Un naranja quemado profesional */
+    --accent-glow: rgba(230, 126, 34, 0.3);
+
+    /* Texto */
+    --text-main: #d1d5db;      /* Gris claro (Darcula style) */
+    --text-dim: #9ca3af;       
+    --border-color: #242933;   
+    
     --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 }
 
@@ -142,4 +149,33 @@ input:checked + .slider { background-color: var(--accent-color); }
     background: var(--accent-color);
     color: var(--bg-color);
     box-shadow: 0 0 10px var(--accent-color);
+}
+
+/* Animación de entrada */
+@keyframes fadeInData {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in-effect {
+    animation: fadeInData 0.4s ease-out forwards;
+}
+
+/* Mejora de la Card para este tema */
+.card {
+    background: var(--card-bg);
+    display: block !important;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    color: var(--text-main);
+}
+
+.card:hover {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 15px var(--accent-glow);
+}
+
+.project-grid {
+    display: grid !important;            /* Verifica que no esté en 'none' */
+    min-height: 200px;                   /* Para ver si el contenedor existe */
 }
