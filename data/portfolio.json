@@ -36,7 +36,7 @@
                         ]
                     },
                     "url": "https://github.com/tu-usuario/proyecto-brazo",
-                    "video_url": "img/demo-brazo.mp4",
+                    "video_url": "static/img/demo-brazo.mp4",
                     "highlights": [
                         "Implementación de cinemática inversa en tiempo real.",
                         "Reducción del error de posicionamiento a ±0.2mm.",
@@ -44,11 +44,11 @@
                     ],
                     "images": [
                         {
-                            "img_path": "img/brazo-render.jpg",
+                            "img_path": "static/img/brazo-render.jpg",
                             "caption": "Diseño en CAD"
                         },
                         {
-                            "img_path": "img/brazo-pcb.jpg",
+                            "img_path": "static/img/brazo-pcb.jpg",
                             "caption": "PCB Fabricada"
                         }
                     ]
@@ -104,7 +104,7 @@
                         ]
                     },
                     "url": "https://github.com/tu-usuario/proyecto-brazo",
-                    "video_url": "img/demo-brazo.mp4",
+                    "video_url": "static/img/demo-brazo.mp4",
                     "highlights": [
                         "Real-time inverse kinematics implementation.",
                         "Positioning error reduction to ±0.2mm.",
@@ -112,11 +112,11 @@
                     ],
                     "images": [
                         {
-                            "img_path": "img/brazo-render.jpg",
+                            "img_path": "static/img/brazo-render.jpg",
                             "caption": "CAD Design"
                         },
                         {
-                            "img_path": "img/brazo-pcb.jpg",
+                            "img_path": "static/img/brazo-pcb.jpg",
                             "caption": "Fabricated PCB"
                         }
                     ]
