@@ -1,0 +1,147 @@
+{
+    "config": {
+        "default_language": "es",
+        "available_languages": [
+            "es",
+            "en"
+        ]
+    },
+    "languages": {
+        "es": {
+            "name": "Roberto Parra",
+            "label": "Ingeniero Mecatrónico | Especialista en Automatización y Sistemas Embebidos",
+            "nav": {
+                "projects": "Proyectos",
+                "skills": "Habilidades",
+                "contact": "Contacto"
+            },
+            "projects": [
+                {
+                    "title": "Brazo Robótico con Control PID",
+                    "category": "Robótica / Firmware",
+                    "summary": "Desarrollo de un brazo robótico de 3 GDL con control de posición preciso.",
+                    "tech_stack": {
+                        "hardware": [
+                            "STM32",
+                            "Motores NEMA 17",
+                            "Drivers A4988"
+                        ],
+                        "firmware": [
+                            "C++",
+                            "FreeRTOS"
+                        ],
+                        "protocols": [
+                            "UART",
+                            "SPI"
+                        ]
+                    },
+                    "url": "https://github.com/tu-usuario/proyecto-brazo",
+                    "video_url": "img/demo-brazo.mp4",
+                    "highlights": [
+                        "Implementación de cinemática inversa en tiempo real.",
+                        "Reducción del error de posicionamiento a ±0.2mm.",
+                        "Diseño de PCB propia para la etapa de potencia."
+                    ],
+                    "images": [
+                        {
+                            "img_path": "img/brazo-render.jpg",
+                            "caption": "Diseño en CAD"
+                        },
+                        {
+                            "img_path": "img/brazo-pcb.jpg",
+                            "caption": "PCB Fabricada"
+                        }
+                    ]
+                }
+            ],
+            "skills": [
+                {
+                    "category": "Hardware",
+                    "list": [
+                        "KiCad",
+                        "SolidWorks",
+                        "PLC Delta/Siemens",
+                        "Diseño de PCB"
+                    ]
+                },
+                {
+                    "category": "Software/Firmware",
+                    "list": [
+                        "C/C++",
+                        "Python",
+                        "ROS2",
+                        "MicroPython"
+                    ]
+                }
+            ]
+        },
+        "en": {
+            "name": "Roberto Parra",
+            "label": "Mechatronics Engineer | Automation & Embedded Systems Specialist",
+            "nav": {
+                "projects": "Projects",
+                "skills": "Skills",
+                "contact": "Contact"
+            },
+            "projects": [
+                {
+                    "title": "PID Controlled Robotic Arm",
+                    "category": "Robotics / Firmware",
+                    "summary": "Development of a 3 DOF robotic arm with high-precision position control.",
+                    "tech_stack": {
+                        "hardware": [
+                            "STM32",
+                            "NEMA 17 Motors",
+                            "A4988 Drivers"
+                        ],
+                        "firmware": [
+                            "C++",
+                            "FreeRTOS"
+                        ],
+                        "protocols": [
+                            "UART",
+                            "SPI"
+                        ]
+                    },
+                    "url": "https://github.com/tu-usuario/proyecto-brazo",
+                    "video_url": "img/demo-brazo.mp4",
+                    "highlights": [
+                        "Real-time inverse kinematics implementation.",
+                        "Positioning error reduction to ±0.2mm.",
+                        "Custom PCB design for power stage."
+                    ],
+                    "images": [
+                        {
+                            "img_path": "img/brazo-render.jpg",
+                            "caption": "CAD Design"
+                        },
+                        {
+                            "img_path": "img/brazo-pcb.jpg",
+                            "caption": "Fabricated PCB"
+                        }
+                    ]
+                }
+            ],
+            "skills": [
+                {
+                    "category": "Hardware",
+                    "list": [
+                        "KiCad",
+                        "SolidWorks",
+                        "PLC Delta/Siemens",
+                        "PCB Design"
+                    ]
+                },
+                {
+                    "category": "Software/Firmware",
+                    "list": [
+                        "C/C++",
+                        "Python",
+                        "ROS2",
+                        "MicroPython"
+                    ]
+                }
+            ]
+        }
+    }
+}
