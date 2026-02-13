@@ -54,6 +54,127 @@
                         }
                     ]
                 }
+                ,
+                {
+                    "title": "Sistema de Visión para Inspección Industrial",
+                    "category": "Visión Artificial / Integración",
+                    "summary": "Implementación de un sistema de inspección basado en cámaras para detección de defectos en línea de producción.",
+                    "tech_stack": {
+                        "hardware": [
+                            "Cámaras USB 2.0",
+                            "Iluminación LED",
+                            "PC Industrial"
+                        ],
+                        "firmware": [
+                            "Python",
+                            "OpenCV"
+                        ],
+                        "protocols": [
+                            "GigE",
+                            "MQTT"
+                        ]
+                    },
+                    "url": "https://github.com/tu-usuario/vision-inspeccion",
+                    "video_url": "static/img/demo-vision.mp4",
+                    "highlights": [
+                        "Detección de defectos en tiempo real con >95% de precisión.",
+                        "Integración con PLC para rechazo automático.",
+                        "UI web para visualizar resultados y estadísticas." 
+                    ],
+                    "images": [
+                        { "img_path": "static/img/vision-rig.jpg", "caption": "Equipo de inspección montado" }
+                    ]
+                },
+                {
+                    "title": "Plataforma IoT para Monitoreo Predictivo",
+                    "category": "IoT / Cloud",
+                    "summary": "Sistema de telemetría para máquinas industriales con análisis predictivo en la nube.",
+                    "tech_stack": {
+                        "hardware": [
+                            "ESP32",
+                            "Sensores de vibración",
+                            "Módulo LTE"
+                        ],
+                        "firmware": [
+                            "MicroPython",
+                            "C/C++"
+                        ],
+                        "protocols": [
+                            "MQTT",
+                            "HTTP/REST"
+                        ]
+                    },
+                    "url": "https://github.com/tu-usuario/iot-predictivo",
+                    "video_url": "static/img/demo-iot.mp4",
+                    "highlights": [
+                        "Predicción de fallos con modelos basados en ML.",
+                        "Bajo consumo y transmisión eficiente de datos.",
+                        "Dashboard para alertas y visualización histórica." 
+                    ],
+                    "images": [
+                        { "img_path": "static/img/iot-nodo.jpg", "caption": "Nodo IoT con sensores" }
+                    ]
+                },
+                {
+                    "title": "Controlador BLDC con FOC",
+                    "category": "Electrónica de Potencia / Control",
+                    "summary": "Desarrollo de un controlador para motores BLDC usando control por orientación de campo (FOC).",
+                    "tech_stack": {
+                        "hardware": [
+                            "MCU STM32",
+                            "Inversor 3-fase",
+                            "Sensores de corriente"
+                        ],
+                        "firmware": [
+                            "C/C++",
+                            "ARM CMSIS"
+                        ],
+                        "protocols": [
+                            "CAN",
+                            "UART"
+                        ]
+                    },
+                    "url": "https://github.com/tu-usuario/blcd-foc",
+                    "video_url": "static/img/demo-blcd.mp4",
+                    "highlights": [
+                        "Control FOC eficiente para torque y velocidad.",
+                        "Protecciones integradas y telemetría.",
+                        "Optimización de ISR para respuesta rápida." 
+                    ],
+                    "images": [
+                        { "img_path": "static/img/blcd-board.jpg", "caption": "PCB del controlador" }
+                    ]
+                },
+                {
+                    "title": "Estación Meteorológica y Dashboard Web",
+                    "category": "Sistemas Embebidos / Web",
+                    "summary": "Estación para medición ambiental con visualización en tiempo real y series temporales.",
+                    "tech_stack": {
+                        "hardware": [
+                            "Raspberry Pi",
+                            "Sensores BMP/DS18B20",
+                            "Anemómetro"
+                        ],
+                        "firmware": [
+                            "Python",
+                            "Node.js"
+                        ],
+                        "protocols": [
+                            "WebSocket",
+                            "HTTP/REST"
+                        ]
+                    },
+                    "url": "https://github.com/tu-usuario/estacion-meteorologica",
+                    "video_url": "static/img/demo-estacion.mp4",
+                    "highlights": [
+                        "Visualización de datos en tiempo real y exportación CSV.",
+                        "Calibración automática de sensores.",
+                        "Implementación de alertas por umbral." 
+                    ],
+                    "images": [
+                        { "img_path": "static/img/estacion-outdoor.jpg", "caption": "Estación instalada" }
+                    ]
+                }
             ],
             "skills": [
                 {
@@ -134,6 +255,127 @@
                             "img_path": "static/img/brazo-pcb.jpg",
                             "caption": "Fabricated PCB"
                         }
+                    ]
+                }
+                ,
+                {
+                    "title": "Vision System for Industrial Inspection",
+                    "category": "Computer Vision / Integration",
+                    "summary": "Camera-based inspection system for real-time defect detection on production lines.",
+                    "tech_stack": {
+                        "hardware": [
+                            "USB 2.0 Cameras",
+                            "LED Lighting",
+                            "Industrial PC"
+                        ],
+                        "firmware": [
+                            "Python",
+                            "OpenCV"
+                        ],
+                        "protocols": [
+                            "GigE",
+                            "MQTT"
+                        ]
+                    },
+                    "url": "https://github.com/tu-usuario/vision-inspeccion",
+                    "video_url": "static/img/demo-vision.mp4",
+                    "highlights": [
+                        "Real-time defect detection with >95% accuracy.",
+                        "PLC integration for automatic rejection.",
+                        "Web UI for results and statistics." 
+                    ],
+                    "images": [
+                        { "img_path": "static/img/vision-rig.jpg", "caption": "Inspection rig mounted" }
+                    ]
+                },
+                {
+                    "title": "IoT Platform for Predictive Monitoring",
+                    "category": "IoT / Cloud",
+                    "summary": "Telemetry system for industrial machines with cloud-based predictive analytics.",
+                    "tech_stack": {
+                        "hardware": [
+                            "ESP32",
+                            "Vibration Sensors",
+                            "LTE Module"
+                        ],
+                        "firmware": [
+                            "MicroPython",
+                            "C/C++"
+                        ],
+                        "protocols": [
+                            "MQTT",
+                            "HTTP/REST"
+                        ]
+                    },
+                    "url": "https://github.com/tu-usuario/iot-predictivo",
+                    "video_url": "static/img/demo-iot.mp4",
+                    "highlights": [
+                        "Failure prediction using ML models.",
+                        "Low-power and efficient data transfer.",
+                        "Dashboard for alerts and historical views." 
+                    ],
+                    "images": [
+                        { "img_path": "static/img/iot-nodo.jpg", "caption": "IoT node with sensors" }
+                    ]
+                },
+                {
+                    "title": "BLDC Controller with FOC",
+                    "category": "Power Electronics / Control",
+                    "summary": "Development of a BLDC motor controller using Field Oriented Control (FOC).",
+                    "tech_stack": {
+                        "hardware": [
+                            "STM32 MCU",
+                            "3-phase Inverter",
+                            "Current Sensors"
+                        ],
+                        "firmware": [
+                            "C/C++",
+                            "ARM CMSIS"
+                        ],
+                        "protocols": [
+                            "CAN",
+                            "UART"
+                        ]
+                    },
+                    "url": "https://github.com/tu-usuario/blcd-foc",
+                    "video_url": "static/img/demo-blcd.mp4",
+                    "highlights": [
+                        "Efficient FOC for torque and speed control.",
+                        "Built-in protections and telemetry.",
+                        "ISR optimization for fast response." 
+                    ],
+                    "images": [
+                        { "img_path": "static/img/blcd-board.jpg", "caption": "Controller PCB" }
+                    ]
+                },
+                {
+                    "title": "Weather Station and Web Dashboard",
+                    "category": "Embedded Systems / Web",
+                    "summary": "Environmental measurement station with real-time visualization and time-series data.",
+                    "tech_stack": {
+                        "hardware": [
+                            "Raspberry Pi",
+                            "BMP/DS18B20 Sensors",
+                            "Anemometer"
+                        ],
+                        "firmware": [
+                            "Python",
+                            "Node.js"
+                        ],
+                        "protocols": [
+                            "WebSocket",
+                            "HTTP/REST"
+                        ]
+                    },
+                    "url": "https://github.com/tu-usuario/estacion-meteorologica",
+                    "video_url": "static/img/demo-estacion.mp4",
+                    "highlights": [
+                        "Real-time visualization and CSV export.",
+                        "Automatic sensor calibration.",
+                        "Threshold-based alerting." 
+                    ],
+                    "images": [
+                        { "img_path": "static/img/estacion-outdoor.jpg", "caption": "Installed station" }
                     ]
                 }
             ],
