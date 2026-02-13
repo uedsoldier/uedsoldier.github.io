@@ -2,6 +2,9 @@ from jinja2 import Environment, FileSystemLoader
 from pathlib import Path
 import shutil
 import time
+import minify_html
+import rjsmin
+import rcssmin
 
 # =========================
 # Paths
@@ -32,39 +35,67 @@ env.globals['static'] = static
 
 # =========================
 # Templates to render
-# output_name -> context
 # =========================
 templates = {
     'index.html': {
         'title': 'Resume',
         'link': 'https://google.com',
     },
-    # ejemplo extra:
-    # 'about.html': {'title': 'About'},
 }
 
 # =========================
 # Prepare dist/
 # =========================
+if DIST_DIR.exists():
+    shutil.rmtree(DIST_DIR)
 DIST_DIR.mkdir(exist_ok=True)
 
 # =========================
-# Render templates
+# Render & Minify HTML
 # =========================
 for output_name, context in templates.items():
     template = env.get_template(output_name)
-    html = template.render(**context)
+    html_content = template.render(**context)
+    
+    minified_html = minify_html.minify(
+        html_content,
+        minify_js=True,
+        minify_css=True,
+        remove_processing_instructions=True
+    )
+    
     out_path = DIST_DIR / output_name
-    out_path.write_text(html, encoding='utf-8')
-    print(f'✔ Rendered {out_path}')
+    out_path.write_text(minified_html, encoding='utf-8')
+    print(f'✔ Rendered and Minified {out_path}')
 
 # =========================
-# Collect static files
+# Collect & Minify Static Files
 # =========================
-if STATIC_DST.exists():
-    shutil.rmtree(STATIC_DST)
+# Reemplazamos shutil.copytree por un proceso selectivo
+STATIC_DST.mkdir(parents=True, exist_ok=True)
 
-shutil.copytree(STATIC_SRC, STATIC_DST)
-print(f'✔ Static files copied to {STATIC_DST}')
+for file_path in STATIC_SRC.rglob('*'):
+    if file_path.is_file():
+        # Calculamos la ruta de destino manteniendo la estructura
+        relative_path = file_path.relative_to(STATIC_SRC)
+        target_path = STATIC_DST / relative_path
+        target_path.parent.mkdir(parents=True, exist_ok=True)
 
-print('\n✅ Build completed successfully')
+        if file_path.suffix == '.js':
+            # Minificación de JavaScript
+            js_content = file_path.read_text(encoding='utf-8')
+            target_path.write_text(rjsmin.jsmin(js_content), encoding='utf-8')
+            print(f'✔ Minified JS: {relative_path}')
+            
+        elif file_path.suffix == '.css':
+            # Minificación de CSS
+            css_content = file_path.read_text(encoding='utf-8')
+            target_path.write_text(rcssmin.cssmin(css_content), encoding='utf-8')
+            print(f'✔ Minified CSS: {relative_path}')
+            
+        else:
+            # Otros archivos (SVG, imágenes, etc.) se copian tal cual
+            shutil.copy2(file_path, target_path)
+            print(f'✔ Copied: {relative_path}')
+
+print('\n✅ Build completed successfully with full minification')
