@@ -1,2 +1,5 @@
 Jinja2==3.1.6
 MarkupSafe==3.0.3
+minify_html==0.18.1
+rcssmin==1.2.2
+rjsmin==1.2.5
