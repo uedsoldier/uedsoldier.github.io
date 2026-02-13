@@ -13,6 +13,7 @@
             "nav": {
                 "projects": "Proyectos",
                 "skills": "Habilidades",
+                "education": "Formación",
                 "contact": "Contacto"
             },
             "projects": [
@@ -74,6 +75,19 @@
                     ]
                 }
             ]
+            ,
+            "education": [
+                {
+                    "school": "Tu Universidad",
+                    "degree": "Ingeniería Mecatrónica (Título: Ingeniero Mecatrónico)",
+                    "start_year": "2016",
+                    "end_year": "2022",
+                    "location": "Ciudad, País",
+                    "thesis_title": "Control adaptativo para manipuladores robóticos",
+                    "thesis_description": "Desarrollo e implementación de un controlador adaptativo para reducir el error de posicionamiento en manipuladores de 3 GDL.",
+                    "url": ""
+                }
+            ]
         },
         "en": {
             "name": "Roberto Parra",
@@ -81,6 +95,7 @@
             "nav": {
                 "projects": "Projects",
                 "skills": "Skills",
+                "education": "Education",
                 "contact": "Contact"
             },
             "projects": [
@@ -140,6 +155,19 @@
                         "ROS2",
                         "MicroPython"
                     ]
+                }
+            ]
+            ,
+            "education": [
+                {
+                    "school": "Your University",
+                    "degree": "B.Sc. Mechatronics Engineering (Degree: Mechatronics Engineer)",
+                    "start_year": "2016",
+                    "end_year": "2022",
+                    "location": "City, Country",
+                    "thesis_title": "Adaptive Control for Robotic Manipulators",
+                    "thesis_description": "Development and implementation of an adaptive controller to reduce positioning error in 3-DOF manipulators.",
+                    "url": ""
                 }
             ]
         }

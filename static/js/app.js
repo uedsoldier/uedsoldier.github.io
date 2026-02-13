@@ -14,9 +14,12 @@ document.addEventListener('DOMContentLoaded', () => {
         label: document.getElementById('ui-label'),
         navProjects: document.getElementById('nav-projects'),
         navSkills: document.getElementById('nav-skills'),
+        navEducation: document.getElementById('nav-education'),
         projectsGrid: document.getElementById('projects'),
         skillsTitle: document.getElementById('ui-skills-title'),
         skillsDisplay: document.getElementById('skills-display'),
+        educationTitle: document.getElementById('ui-education-title'),
+        educationDisplay: document.getElementById('education-display'),
         langBtn: document.getElementById('lang-btn'),
         langLabel: document.getElementById('lang-label')
     };
@@ -39,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (ui.label) ui.label.textContent = content.label;
         if (ui.navProjects) ui.navProjects.textContent = content.nav.projects;
         if (ui.navSkills) ui.navSkills.textContent = content.nav.skills;
+        if (ui.navEducation) ui.navEducation.textContent = content.nav.education || '';
         if (ui.skillsTitle) ui.skillsTitle.textContent = content.nav.skills;
         if (ui.langLabel) ui.langLabel.textContent = (lang === 'es') ? 'EN' : 'ES';
 
@@ -91,6 +95,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
         `).join('');
+        }
+
+        // Render Education
+        if (ui.educationDisplay && content.education) {
+            if (ui.educationTitle) ui.educationTitle.textContent = content.nav.education || '';
+            ui.educationDisplay.innerHTML = content.education.map(edu => `
+                <div class="education-item">
+                    <div class="edu-header">
+                        <h3>${edu.school || ''} <span class="edu-years">(${edu.start_year || ''} - ${edu.end_year || ''})</span></h3>
+                    </div>
+                    <div class="edu-degree">${edu.degree || ''}</div>
+                    <div class="edu-location">${edu.location || ''}</div>
+                    ${edu.thesis_title ? `<h4 class="thesis-title">${edu.thesis_title}</h4>` : ''}
+                    ${edu.thesis_description ? `<p class="thesis-desc">${edu.thesis_description}</p>` : ''}
+                    ${edu.url ? `<a href="${edu.url}" target="_blank">Ver trabajo</a>` : ''}
+                </div>
+            `).join('');
         }
     };
 
