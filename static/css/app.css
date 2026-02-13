@@ -1,3 +1,145 @@
-h1 {
-    color: blueviolet;
+/* --- Variables Industriales --- */
+:root {
+    --bg-color: #0d1117;       /* Fondo profundo tipo VS Code */
+    --card-bg: #161b22;        /* Gris oscuro para contenedores */
+    --accent-color: #2ea043;   /* Verde terminal/ingeniería */
+    --text-main: #c9d1d9;      /* Texto suave para no cansar la vista */
+    --text-dim: #8b949e;       /* Texto secundario/especificaciones */
+    --border-color: #30363d;   /* Bordes definidos pero sutiles */
+    --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* --- Layout Base --- */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.dashboard-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* --- Header & Switch de Idioma --- */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.tech-label {
+    color: var(--accent-color);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+}
+
+/* Estilo del Toggle (Switch Industrial) */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+}
+
+.switch input { opacity: 0; width: 0; height: 0; }
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    transition: .4s;
+    border-radius: 4px;
+}
+
+input:checked + .slider { background-color: var(--accent-color); }
+
+/* --- Project Grid (Dashboard de Datos) --- */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.card:hover {
+    border-color: var(--accent-color);
+    transform: translateY(-5px);
+}
+
+.card-media img, .card-media video {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.card-content { padding: 20px; }
+
+/* Hojas de Datos (Spec Sheets) */
+.tech-specs {
+    background: rgba(0, 0, 0, 0.2);
+    border-left: 3px solid var(--accent-color);
+    padding: 10px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    margin: 15px 0;
+}
+
+.spec-item { margin-bottom: 5px; color: var(--text-dim); }
+
+/* --- Tags & Buttons --- */
+.tag {
+    background: #21262d;
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+}
+
+.btn-git {
+    display: inline-block;
+    margin-top: 15px;
+    color: var(--bg-color);
+    background-color: var(--accent-color);
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.btn-industrial-toggle {
+    background: transparent;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    padding: 5px 15px;
+    font-family: var(--font-mono);
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.btn-industrial-toggle:hover {
+    background: var(--accent-color);
+    color: var(--bg-color);
+    box-shadow: 0 0 10px var(--accent-color);
 }
