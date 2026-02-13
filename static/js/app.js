@@ -125,4 +125,71 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 6. Ejecución Inicial
     updateUI(currentLang);
+
+    // --- Sidebar active highlight ---
+    const navAnchors = document.querySelectorAll('.tech-sidebar a.nav-link');
+    const sectionIds = Array.from(document.querySelectorAll('main .data-view section[id]')).map(s => s.id);
+
+    function setActiveById(id) {
+        navAnchors.forEach(a => {
+            const href = a.getAttribute('href') || '';
+            if (href === `#${id}`) a.classList.add('active');
+            else a.classList.remove('active');
+        });
+    }
+
+    // Click handlers to set active immediately when user clicks a nav link
+    navAnchors.forEach(a => {
+        a.addEventListener('click', (e) => {
+            const href = a.getAttribute('href') || '';
+            if (href.startsWith('#')) {
+                const id = href.slice(1);
+                setActiveById(id);
+            }
+        });
+    });
+
+    // IntersectionObserver to highlight based on section in viewport
+    const observerOptions = { root: null, rootMargin: '0px 0px -45% 0px', threshold: 0 };
+    const observer = new IntersectionObserver((entries) => {
+        // pick the entry that is intersecting and has the largest intersectionRatio
+        const visible = entries.filter(e => e.isIntersecting);
+        if (visible.length > 0) {
+            // sort by boundingClientRect area (proxy for visibility)
+            visible.sort((a,b) => b.intersectionRatio - a.intersectionRatio);
+            const id = visible[0].target.id;
+            if (id) setActiveById(id);
+        }
+    }, observerOptions);
+
+    sectionIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) observer.observe(el);
+    });
+
+    // If page opened with a hash, mark the corresponding nav item active
+    const initialHash = window.location.hash.slice(1);
+    if (initialHash) setActiveById(initialHash);
+
+    // Update active state when the URL hash changes (back/forward navigation)
+    window.addEventListener('hashchange', () => {
+        const id = window.location.hash.slice(1);
+        if (id) setActiveById(id);
+    });
+
+    // Some browsers manipulate history without hashchange — listen popstate as well
+    window.addEventListener('popstate', () => {
+        const id = window.location.hash.slice(1);
+        if (id) setActiveById(id);
+    });
+
+    // Highlight nav link when user focuses a link with keyboard (accessibility)
+    document.addEventListener('focusin', (e) => {
+        const target = e.target;
+        const navLink = target.closest ? target.closest('.tech-sidebar a.nav-link') : null;
+        if (navLink) {
+            const href = navLink.getAttribute('href') || '';
+            if (href.startsWith('#')) setActiveById(href.slice(1));
+        }
+    });
 });
