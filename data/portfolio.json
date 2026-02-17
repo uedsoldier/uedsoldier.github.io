@@ -19,6 +19,7 @@
             "projects": [
                 {
                     "title": "Brazo Robótico con Control PID",
+                    "id": 1,
                     "categories": ["robotics","firmware"],
                     "summary": "Desarrollo de un brazo robótico de 3 GDL con control de posición preciso.",
                     "short_summary": "Brazo 3 GDL con control PID de alta precisión.",
@@ -58,6 +59,7 @@
                 ,
                 {
                     "title": "Sistema de Visión para Inspección Industrial",
+                    "id": 2,
                     "categories": ["vision","integration"],
                     "summary": "Implementación de un sistema de inspección basado en cámaras para detección de defectos en línea de producción.",
                     "short_summary": "Inspección en línea con detección en tiempo real.",
@@ -89,6 +91,7 @@
                 },
                 {
                     "title": "Plataforma IoT para Monitoreo Predictivo",
+                    "id": 3,
                     "categories": ["iot","cloud"],
                     "summary": "Sistema de telemetría para máquinas industriales con análisis predictivo en la nube.",
                     "short_summary": "Nodo IoT con telemetría y análisis en la nube.",
@@ -120,6 +123,7 @@
                 },
                 {
                     "title": "Controlador BLDC con FOC",
+                    "id": 4,
                     "categories": ["power_electronics","control"],
                     "summary": "Desarrollo de un controlador para motores BLDC usando control por orientación de campo (FOC).",
                     "short_summary": "Controlador FOC para motores BLDC con telemetría.",
@@ -151,6 +155,7 @@
                 },
                 {
                     "title": "Estación Meteorológica y Dashboard Web",
+                    "id": 5,
                     "categories": ["embedded_systems","web"],
                     "summary": "Estación para medición ambiental con visualización en tiempo real y series temporales.",
                     "short_summary": "Estación ambiental con dashboard en tiempo real.",
@@ -182,6 +187,7 @@
                 },
                 {
                     "title": "Servidor MQTT para Telemetría",
+                    "id": 6,
                     "categories": ["software","backend"],
                     "summary": "Servidor MQTT de alta disponibilidad para recolección y distribución de telemetría industrial.",
                     "short_summary": "Broker MQTT con gestión de topics y persistencia.",
@@ -246,6 +252,7 @@
             "projects": [
                 {
                     "title": "PID Controlled Robotic Arm",
+                    "id": 1,
                     "categories": ["robotics","firmware"],
                     "summary": "Development of a 3 DOF robotic arm with high-precision position control.",
                     "short_summary": "3-DOF arm with PID control for high precision.",
@@ -285,6 +292,7 @@
                 ,
                 {
                     "title": "Vision System for Industrial Inspection",
+                    "id": 2,
                     "categories": ["vision","integration"],
                     "summary": "Camera-based inspection system for real-time defect detection on production lines.",
                     "short_summary": "On-line inspection with real-time defect detection.",
@@ -316,6 +324,7 @@
                 },
                 {
                     "title": "IoT Platform for Predictive Monitoring",
+                    "id": 3,
                     "categories": ["iot","cloud"],
                     "summary": "Telemetry system for industrial machines with cloud-based predictive analytics.",
                     "short_summary": "IoT node with telemetry and cloud analytics.",
@@ -347,6 +356,7 @@
                 },
                 {
                     "title": "BLDC Controller with FOC",
+                    "id": 4,
                     "categories": ["power_electronics","control"],
                     "summary": "Development of a BLDC motor controller using Field Oriented Control (FOC).",
                     "short_summary": "FOC BLDC controller with low-latency telemetry.",
@@ -378,6 +388,7 @@
                 },
                 {
                     "title": "Weather Station and Web Dashboard",
+                    "id": 5,
                     "categories": ["embedded_systems","web"],
                     "summary": "Environmental measurement station with real-time visualization and time-series data.",
                     "short_summary": "Weather station with real-time dashboard and exports.",
@@ -409,6 +420,7 @@
                 },
                 {
                     "title": "MQTT Server for Telemetry",
+                    "id": 6,
                     "categories": ["software","backend"],
                     "summary": "High-availability MQTT server for industrial telemetry collection and distribution.",
                     "short_summary": "MQTT broker with topic management and persistence.",
