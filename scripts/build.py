@@ -18,6 +18,7 @@ DIST_DIR = BASE_DIR / 'dist'
 STATIC_DST = DIST_DIR / 'static'
 DATA_FILE = BASE_DIR / 'data' / 'portfolio.json'
 TAGS_FILE = BASE_DIR / 'data' / 'tags.json'
+CATEGORIES_FILE = BASE_DIR / 'data' / 'categories.json'
 
 # Load data
 with open(DATA_FILE, 'r', encoding='utf-8') as f:
@@ -27,8 +28,13 @@ with open(DATA_FILE, 'r', encoding='utf-8') as f:
 with open(TAGS_FILE, 'r', encoding='utf-8') as f:
     tags_data = json.load(f)
 
+# Load categories mapping
+with open(CATEGORIES_FILE, 'r', encoding='utf-8') as f:
+    categories_data = json.load(f)
+
 # Inject tags into portfolio_data so templates and client JS can access them
 portfolio_data['tags'] = tags_data
+portfolio_data['categories_map'] = categories_data
 
 # =========================
 # Jinja environment
@@ -45,6 +51,7 @@ def static(path: str) -> str:
 
 env.globals['static'] = static
 env.globals['tags'] = tags_data
+env.globals['categories_map'] = categories_data
 
 def slugify(text):
     text = text.lower()
