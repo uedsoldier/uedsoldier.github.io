@@ -274,3 +274,9 @@ input:checked + .slider { background-color: var(--accent-color); }
     .main-header { position: static; }
     .tech-sidebar { position: static; max-height: none; overflow: visible; }
 }
+
+.detail-wrapper { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+.detail-nav { margin-bottom: 30px; }
+.img-expanded { width: 100%; border: 1px solid var(--border-color); margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+.detail-gallery { display: flex; flex-direction: column; gap: 40px; margin-top: 40px; }
+.media-overlay { font-family: var(--font-mono); color: var(--accent-color); font-size: 0.8rem; text-align: right; }

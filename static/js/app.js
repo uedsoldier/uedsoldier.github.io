@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const siteData = JSON.parse(dataElement.textContent);
 
     // 2. Definir el Estado Inicial
-    let currentLang = siteData.config.default_lang || 'es';
+    let currentLang = siteData.config.default_language || siteData.config.default_lang || 'es';
 
     // 3. Referencias a los Nodos del DOM (Actuadores)
     const ui = {
@@ -47,6 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (ui.langLabel) ui.langLabel.textContent = (lang === 'es') ? 'EN' : 'ES';
 
         // Renderizado de Proyectos con validación
+        const detailsLabel = (siteData.tags && siteData.tags[lang] && siteData.tags[lang].view_details) || ((lang === 'es') ? 'Ver Detalles Técnicos' : 'View Technical Details');
+
         ui.projectsGrid.innerHTML = content.projects.map(proj => {
     // Validaciones preventivas para evitar que la card quede vacía
     const hw = proj.tech_stack?.hardware || [];
@@ -67,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <h3>${proj.title || "Proyecto sin título"}</h3>
                     <span class="tag">${proj.category || "General"}</span>
                 </div>
-                <p class="summary">${proj.summary || ""}</p>
+                <p class="summary">${proj.short_summary || proj.summary || ""}</p>
                 
                 <div class="tech-specs">
                     <div class="spec-item"><strong>HW:</strong> ${hw.join(' + ') || 'N/A'}</div>
@@ -79,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     ${highlights.map(h => `<li>${h}</li>`).join('')}
                 </ul>
                 
-                <a href="${proj.url || '#'}" target="_blank" class="btn-git">Source Code</a>
+                <a href="${proj.detail_url}" class="btn-git">${detailsLabel}</a>
             </div>
         </article>
     `;

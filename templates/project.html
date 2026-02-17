@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="detail-wrapper fade-in-effect">
+    <nav class="detail-nav">
+        <a href="index.html" class="btn-industrial-toggle">{{ tags[current_lang].back }}</a>
+    </nav>
+
+    <div class="detail-layout">
+        <header class="detail-header">
+            <h1 id="p-title"></h1>
+            <span id="p-category" class="tag"></span>
+            <p id="p-summary" class="lead-text"></p>
+            
+            <div class="tech-card">
+                <h3 id="p-tech-title">{{ tags[current_lang].technical_specifications }}</h3>
+                <div id="p-stack" class="tech-specs"></div>
+                <ul id="p-highlights" class="highlights"></ul>
+                <a id="p-repo" href="#" target="_blank" class="btn-git">{{ tags[current_lang].repository }}</a>
+            </div>
+        </header>
+
+        <section id="p-gallery" class="detail-gallery">
+            </section>
+    </div>
+</main>
+
+<script id="project-data" type="application/json">
+    {{ project_data | tojson }}
+</script>
+<script>
+    window.currentLang = "{{ current_lang }}";
+</script>
+<script src="{{ static('js/project-detail.js') }}" defer></script>
+{% endblock %}
