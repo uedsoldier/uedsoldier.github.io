@@ -19,7 +19,7 @@
             "projects": [
                 {
                     "title": "Brazo Robótico con Control PID",
-                    "category": "Robótica / Firmware",
+                    "categories": ["robotics","firmware"],
                     "summary": "Desarrollo de un brazo robótico de 3 GDL con control de posición preciso.",
                     "short_summary": "Brazo 3 GDL con control PID de alta precisión.",
                     "tech_stack": {
@@ -58,7 +58,7 @@
                 ,
                 {
                     "title": "Sistema de Visión para Inspección Industrial",
-                    "category": "Visión Artificial / Integración",
+                    "categories": ["vision","integration"],
                     "summary": "Implementación de un sistema de inspección basado en cámaras para detección de defectos en línea de producción.",
                     "short_summary": "Inspección en línea con detección en tiempo real.",
                     "tech_stack": {
@@ -89,7 +89,7 @@
                 },
                 {
                     "title": "Plataforma IoT para Monitoreo Predictivo",
-                    "category": "IoT / Cloud",
+                    "categories": ["iot","cloud"],
                     "summary": "Sistema de telemetría para máquinas industriales con análisis predictivo en la nube.",
                     "short_summary": "Nodo IoT con telemetría y análisis en la nube.",
                     "tech_stack": {
@@ -120,7 +120,7 @@
                 },
                 {
                     "title": "Controlador BLDC con FOC",
-                    "category": "Electrónica de Potencia / Control",
+                    "categories": ["power_electronics","control"],
                     "summary": "Desarrollo de un controlador para motores BLDC usando control por orientación de campo (FOC).",
                     "short_summary": "Controlador FOC para motores BLDC con telemetría.",
                     "tech_stack": {
@@ -151,7 +151,7 @@
                 },
                 {
                     "title": "Estación Meteorológica y Dashboard Web",
-                    "category": "Sistemas Embebidos / Web",
+                    "categories": ["embedded_systems","web"],
                     "summary": "Estación para medición ambiental con visualización en tiempo real y series temporales.",
                     "short_summary": "Estación ambiental con dashboard en tiempo real.",
                     "tech_stack": {
@@ -179,6 +179,25 @@
                     "images": [
                         { "img_path": "static/img/estacion-outdoor.jpg", "caption": "Estación instalada" }
                     ]
+                },
+                {
+                    "title": "Servidor MQTT para Telemetría",
+                    "categories": ["software","backend"],
+                    "summary": "Servidor MQTT de alta disponibilidad para recolección y distribución de telemetría industrial.",
+                    "short_summary": "Broker MQTT con gestión de topics y persistencia.",
+                    "tech_stack": {
+                        "software": ["Node.js", "Aedes Broker"],
+                        "protocols": ["MQTT"],
+                        "deployment": ["Docker", "systemd"]
+                    },
+                    "url": "https://github.com/tu-usuario/mqtt-broker",
+                    "video_url": "",
+                    "highlights": [
+                        "Alta concurrencia y persistencia opcional de mensajes.",
+                        "Integración con backend para enrutar telemetría.",
+                        "Autenticación y control de acceso por topic."
+                    ],
+                    "images": []
                 }
             ],
             "skills": [
@@ -227,7 +246,7 @@
             "projects": [
                 {
                     "title": "PID Controlled Robotic Arm",
-                    "category": "Robotics / Firmware",
+                    "categories": ["robotics","firmware"],
                     "summary": "Development of a 3 DOF robotic arm with high-precision position control.",
                     "short_summary": "3-DOF arm with PID control for high precision.",
                     "tech_stack": {
@@ -266,7 +285,7 @@
                 ,
                 {
                     "title": "Vision System for Industrial Inspection",
-                    "category": "Computer Vision / Integration",
+                    "categories": ["vision","integration"],
                     "summary": "Camera-based inspection system for real-time defect detection on production lines.",
                     "short_summary": "On-line inspection with real-time defect detection.",
                     "tech_stack": {
@@ -297,7 +316,7 @@
                 },
                 {
                     "title": "IoT Platform for Predictive Monitoring",
-                    "category": "IoT / Cloud",
+                    "categories": ["iot","cloud"],
                     "summary": "Telemetry system for industrial machines with cloud-based predictive analytics.",
                     "short_summary": "IoT node with telemetry and cloud analytics.",
                     "tech_stack": {
@@ -328,7 +347,7 @@
                 },
                 {
                     "title": "BLDC Controller with FOC",
-                    "category": "Power Electronics / Control",
+                    "categories": ["power_electronics","control"],
                     "summary": "Development of a BLDC motor controller using Field Oriented Control (FOC).",
                     "short_summary": "FOC BLDC controller with low-latency telemetry.",
                     "tech_stack": {
@@ -359,7 +378,7 @@
                 },
                 {
                     "title": "Weather Station and Web Dashboard",
-                    "category": "Embedded Systems / Web",
+                    "categories": ["embedded_systems","web"],
                     "summary": "Environmental measurement station with real-time visualization and time-series data.",
                     "short_summary": "Weather station with real-time dashboard and exports.",
                     "tech_stack": {
@@ -387,6 +406,25 @@
                     "images": [
                         { "img_path": "static/img/estacion-outdoor.jpg", "caption": "Installed station" }
                     ]
+                },
+                {
+                    "title": "MQTT Server for Telemetry",
+                    "categories": ["software","backend"],
+                    "summary": "High-availability MQTT server for industrial telemetry collection and distribution.",
+                    "short_summary": "MQTT broker with topic management and persistence.",
+                    "tech_stack": {
+                        "software": ["Node.js", "Aedes Broker"],
+                        "protocols": ["MQTT"],
+                        "deployment": ["Docker", "systemd"]
+                    },
+                    "url": "https://github.com/tu-usuario/mqtt-broker",
+                    "video_url": "",
+                    "highlights": [
+                        "High concurrency with optional message persistence.",
+                        "Integration with backend services for telemetry routing.",
+                        "Authentication and topic-based access control."
+                    ],
+                    "images": []
                 }
             ],
             "skills": [
