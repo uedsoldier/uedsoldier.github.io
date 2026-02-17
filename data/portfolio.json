@@ -21,6 +21,7 @@
                     "title": "Brazo Robótico con Control PID",
                     "category": "Robótica / Firmware",
                     "summary": "Desarrollo de un brazo robótico de 3 GDL con control de posición preciso.",
+                    "short_summary": "Brazo 3 GDL con control PID de alta precisión.",
                     "tech_stack": {
                         "hardware": [
                             "STM32",
@@ -59,6 +60,7 @@
                     "title": "Sistema de Visión para Inspección Industrial",
                     "category": "Visión Artificial / Integración",
                     "summary": "Implementación de un sistema de inspección basado en cámaras para detección de defectos en línea de producción.",
+                    "short_summary": "Inspección en línea con detección en tiempo real.",
                     "tech_stack": {
                         "hardware": [
                             "Cámaras USB 2.0",
@@ -89,6 +91,7 @@
                     "title": "Plataforma IoT para Monitoreo Predictivo",
                     "category": "IoT / Cloud",
                     "summary": "Sistema de telemetría para máquinas industriales con análisis predictivo en la nube.",
+                    "short_summary": "Nodo IoT con telemetría y análisis en la nube.",
                     "tech_stack": {
                         "hardware": [
                             "ESP32",
@@ -119,6 +122,7 @@
                     "title": "Controlador BLDC con FOC",
                     "category": "Electrónica de Potencia / Control",
                     "summary": "Desarrollo de un controlador para motores BLDC usando control por orientación de campo (FOC).",
+                    "short_summary": "Controlador FOC para motores BLDC con telemetría.",
                     "tech_stack": {
                         "hardware": [
                             "MCU STM32",
@@ -149,6 +153,7 @@
                     "title": "Estación Meteorológica y Dashboard Web",
                     "category": "Sistemas Embebidos / Web",
                     "summary": "Estación para medición ambiental con visualización en tiempo real y series temporales.",
+                    "short_summary": "Estación ambiental con dashboard en tiempo real.",
                     "tech_stack": {
                         "hardware": [
                             "Raspberry Pi",
@@ -224,6 +229,7 @@
                     "title": "PID Controlled Robotic Arm",
                     "category": "Robotics / Firmware",
                     "summary": "Development of a 3 DOF robotic arm with high-precision position control.",
+                    "short_summary": "3-DOF arm with PID control for high precision.",
                     "tech_stack": {
                         "hardware": [
                             "STM32",
@@ -262,6 +268,7 @@
                     "title": "Vision System for Industrial Inspection",
                     "category": "Computer Vision / Integration",
                     "summary": "Camera-based inspection system for real-time defect detection on production lines.",
+                    "short_summary": "On-line inspection with real-time defect detection.",
                     "tech_stack": {
                         "hardware": [
                             "USB 2.0 Cameras",
@@ -292,6 +299,7 @@
                     "title": "IoT Platform for Predictive Monitoring",
                     "category": "IoT / Cloud",
                     "summary": "Telemetry system for industrial machines with cloud-based predictive analytics.",
+                    "short_summary": "IoT node with telemetry and cloud analytics.",
                     "tech_stack": {
                         "hardware": [
                             "ESP32",
@@ -322,6 +330,7 @@
                     "title": "BLDC Controller with FOC",
                     "category": "Power Electronics / Control",
                     "summary": "Development of a BLDC motor controller using Field Oriented Control (FOC).",
+                    "short_summary": "FOC BLDC controller with low-latency telemetry.",
                     "tech_stack": {
                         "hardware": [
                             "STM32 MCU",
@@ -352,6 +361,7 @@
                     "title": "Weather Station and Web Dashboard",
                     "category": "Embedded Systems / Web",
                     "summary": "Environmental measurement station with real-time visualization and time-series data.",
+                    "short_summary": "Weather station with real-time dashboard and exports.",
                     "tech_stack": {
                         "hardware": [
                             "Raspberry Pi",
