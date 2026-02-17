@@ -3,20 +3,49 @@
     "technical_specifications": "ESPECIFICACIONES TÉCNICAS",
     "repository": "REPOSITORIO GITHUB",
     "back": "← [ ESC ] VOLVER",
-    "hw": "HW",
-    "fw": "FW",
-    "bus": "BUS",
+    "hardware": "Hardware",
+    "firmware": "Firmware",
+    "protocols": "Protocolos",
+    "software": "Software",
+    "deployment": "Despliegue",
     "highlights": "Aspectos Destacados",
     "view_details": "Ver Detalles Técnicos"
+    ,
+    "tech_stack": {
+      "order": ["hardware", "firmware", "protocols", "software", "deployment"],
+      "keys": {
+        "hardware": "Hardware",
+        "firmware": "Firmware",
+        "protocols": "Protocolos",
+        "software": "Software",
+        "deployment": "Despliegue",
+        "test": "Pruebas"
+
+      }
+    }
   },
   "en": {
     "technical_specifications": "TECHNICAL SPECIFICATIONS",
     "repository": "GITHUB REPOSITORY",
     "back": "← [ ESC ] BACK",
-    "hw": "HW",
-    "fw": "FW",
-    "bus": "BUS",
+    "hardware": "Hardware",
+    "firmware": "Firmware",
+    "protocols": "Protocols",
+    "software": "Software",
+    "deployment": "Deployment",
     "highlights": "Highlights",
     "view_details": "View Technical Details"
+    ,
+    "tech_stack": {
+      "order": ["hardware", "firmware", "protocols", "software", "deployment"],
+      "keys": {
+        "hardware": "Hardware",
+        "firmware": "Firmware",
+        "protocols": "Protocols",
+        "software": "Software",
+        "deployment": "Deployment",
+        "test": "Testing"
+        }
+    }
   }
 }
