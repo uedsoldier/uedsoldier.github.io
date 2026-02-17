@@ -1,0 +1,14 @@
+{
+  "robotics": { "es": "Robótica", "en": "Robotics", "color": "#D32F2F" },
+  "firmware": { "es": "Firmware", "en": "Firmware", "color": "#E67E22" },
+  "vision": { "es": "Visión Artificial", "en": "Computer Vision", "color": "#1976D2" },
+  "integration": { "es": "Integración", "en": "Integration", "color": "#388E3C" },
+  "iot": { "es": "IoT", "en": "IoT", "color": "#8E44AD" },
+  "cloud": { "es": "Cloud", "en": "Cloud", "color": "#0D47A1" },
+  "power_electronics": { "es": "Electrónica de Potencia", "en": "Power Electronics", "color": "#F57C00" },
+  "control": { "es": "Control", "en": "Control", "color": "#00796B" },
+  "embedded_systems": { "es": "Sistemas Embebidos", "en": "Embedded Systems", "color": "#2E7D32" },
+  "web": { "es": "Web", "en": "Web", "color": "#1565C0" },
+  "software": { "es": "Software", "en": "Software", "color": "#455A64" },
+  "backend": { "es": "Backend", "en": "Backend", "color": "#6D4C41" }
+}
