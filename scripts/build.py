@@ -1,5 +1,6 @@
 import json
 import re
+import unicodedata
 from jinja2 import Environment, FileSystemLoader
 from pathlib import Path
 import shutil
@@ -58,6 +59,67 @@ def slugify(text):
     text = re.sub(r'[^\w\s-]', '', text)
     return re.sub(r'[-\s]+', '-', text).strip()
 
+
+def ascii_slug(text):
+    """Genera un slug ASCII (sin acentos) a partir de `text`."""
+    nfkd = unicodedata.normalize('NFKD', text)
+    only_ascii = nfkd.encode('ascii', 'ignore').decode('ascii')
+    s = only_ascii.lower()
+    s = re.sub(r'[^\w\s-]', '', s)
+    return re.sub(r'[-\s]+', '-', s).strip()
+
+
+def resolve_static_media(project_slug: str, media_path: str, project_id: str = None) -> str:
+    """Resuelve una ruta de media (imagen/video) intentando, en orden:
+    1) conservar `static/...` si el archivo existe,
+    2) `static/img/<project_slug>/<basename>` si existe,
+    3) `static/<media_path>` si existe relativo a `static/`,
+    4) `static/img/<basename>` si existe,
+    5) devolver la ruta original como último recurso.
+    Esto permite organizar imágenes por proyecto sin romper rutas existentes.
+    """
+    if not media_path:
+        return media_path
+
+    # Si ya apunta a static/ y existe, mantenerla
+    if media_path.startswith('static/'):
+        if (BASE_DIR / media_path).exists():
+            return media_path
+
+    basename = Path(media_path).name
+
+    # Si se pasó un project_id, comprobar primero `static/img/<id>/` (carpeta corta)
+    if project_id:
+        candidate_id = STATIC_SRC / 'img' / str(project_id) / basename
+        if candidate_id.exists():
+            return f'static/img/{project_id}/{basename}'
+
+    # Comprueba también una versión ASCII del slug (sin acentos)
+    ascii_proj = ascii_slug(project_slug)
+
+    # 1) static/img/<project_slug>/<basename>
+    candidate = STATIC_SRC / 'img' / project_slug / basename
+    if candidate.exists():
+        return f'static/img/{project_slug}/{basename}'
+
+    # 1b) static/img/<ascii_project_slug>/<basename>
+    candidate_ascii = STATIC_SRC / 'img' / ascii_proj / basename
+    if candidate_ascii.exists():
+        return f'static/img/{ascii_proj}/{basename}'
+
+    # 2) static/<media_path> (si media_path era relativo dentro de static)
+    candidate2 = STATIC_SRC / Path(media_path)
+    if candidate2.exists():
+        return f'static/{Path(media_path).as_posix()}'
+
+    # 3) static/img/<basename>
+    candidate3 = STATIC_SRC / 'img' / basename
+    if candidate3.exists():
+        return f'static/img/{basename}'
+
+    # Fallback: devolver la ruta original (puede ser URL externa u otra ruta)
+    return media_path
+
 # =========================
 # Prepare dist/
 # =========================
@@ -77,6 +139,17 @@ for lang_code, content in portfolio_data['languages'].items():
         
         # Inyectamos la URL en el objeto para que el Index sepa a dónde linkear
         project['detail_url'] = filename 
+
+        # Resolver rutas de imágenes y videos: permitir `static/img/<project_slug>/...`
+        # obtener project id si existe
+        project_id = project.get('id')
+
+        for img in project.get('images', []):
+            if isinstance(img, dict) and img.get('img_path'):
+                img['img_path'] = resolve_static_media(project_slug, img.get('img_path'), project_id)
+
+        if project.get('video_url'):
+            project['video_url'] = resolve_static_media(project_slug, project.get('video_url'), project_id)
 
         project_html = template_project.render(
             project_data=project,
