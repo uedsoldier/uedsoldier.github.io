@@ -35,6 +35,17 @@ document.addEventListener('DOMContentLoaded', () => {
             container.classList.add('fade-in-effect');
         }
         const content = siteData.languages[lang];
+        // Helper: pick readable text color (black/white) for a given hex background
+        const textColorForBg = (hex) => {
+            try {
+                const c = (hex || '#777').replace('#','');
+                const r = parseInt(c.substr(0,2),16);
+                const g = parseInt(c.substr(2,2),16);
+                const b = parseInt(c.substr(4,2),16);
+                const yiq = (r*299 + g*587 + b*114) / 1000;
+                return (yiq >= 128) ? '#000000' : '#FFFFFF';
+            } catch (e) { return '#FFFFFF'; }
+        };
         if (!content) return; // Protección si el idioma no existe
         console.log("Proyectos encontrados:", content.projects);
         // Uso de Optional Chaining (?.) para evitar que el script truene si falta un ID
@@ -51,10 +62,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         ui.projectsGrid.innerHTML = content.projects.map(proj => {
     // Validaciones preventivas para evitar que la card quede vacía
-    const hw = proj.tech_stack?.hardware || [];
-    const fw = proj.tech_stack?.firmware || [];
-    const protocols = proj.tech_stack?.protocols || [];
     const highlights = proj.highlights || [];
+    const ts = proj.tech_stack || {};
+    const stackHtml = Object.entries(ts).map(([k, v]) => {
+        const labelFromTech = siteData.tags && siteData.tags[lang] && siteData.tags[lang].tech_stack && siteData.tags[lang].tech_stack.keys && siteData.tags[lang].tech_stack.keys[k];
+        const labelFlat = siteData.tags && siteData.tags[lang] && siteData.tags[lang][k];
+        const label = labelFromTech || labelFlat || k.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+        const value = Array.isArray(v) ? v.join(' + ') : v;
+        return `<div class="spec-item"><strong>${label}:</strong> ${value || 'N/A'}</div>`;
+    }).join('');
 
     return `
         <article class="card">
@@ -67,14 +83,18 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="card-content">
                 <div class="card-header">
                     <h3>${proj.title || "Proyecto sin título"}</h3>
-                    <span class="tag">${proj.category || "General"}</span>
+                    ${Array.isArray(proj.categories) ? proj.categories.map(k => {
+                        const catMeta = (siteData.categories_map && siteData.categories_map[k]) || null;
+                        const label = (catMeta && catMeta[lang]) || k;
+                        const bg = (catMeta && catMeta.color) || '#777777';
+                        const txt = textColorForBg(bg);
+                        return `<span class="tag" style="background-color:${bg}; color:${txt};">${label}</span>`;
+                    }).join(' ') : ''}
                 </div>
                 <p class="summary">${proj.short_summary || proj.summary || ""}</p>
                 
                 <div class="tech-specs">
-                    <div class="spec-item"><strong>HW:</strong> ${hw.join(' + ') || 'N/A'}</div>
-                    <div class="spec-item"><strong>FW:</strong> ${fw.join(', ') || 'N/A'}</div>
-                    <div class="spec-item"><strong>BUS:</strong> ${protocols.join(' | ') || 'N/A'}</div>
+                    ${stackHtml}
                 </div>
 
                 <ul class="highlights">
