@@ -14,7 +14,11 @@
     --border-color: #242933;   
     
     --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
-    --header-height: 100px;
+    --header-height: 105px;
+    /* offset used to push page content down (can be smaller than header height) */
+    --layout-top-offset: 0px;
+    /* computed top for the fixed sidebar (keeps previous behavior) */
+    --sidebar-top-offset: calc(var(--header-height) + 20px);
 }
 
 /* --- Layout Base --- */
@@ -177,6 +181,14 @@ input:checked + .slider { background-color: var(--accent-color); }
     font-size: 0.9rem;
 }
 
+/* Actions container: ensure buttons have consistent spacing */
+.detail-actions {
+    display: inline-flex;
+    gap: 10px; /* horizontal spacing between .btn-git items */
+    flex-wrap: wrap; /* allow wrapping on small screens */
+    align-items: center;
+}
+
 .btn-industrial-toggle {
     background: transparent;
     border: 1px solid var(--accent-color);
@@ -266,7 +278,7 @@ input:checked + .slider { background-color: var(--accent-color); }
 
 /* Desktop layout: detach sidebar from normal flow and pin it to the left
    so it remains visible without overlapping the content when scrolling. */
-.dashboard-layout { display: flex; gap: 28px; align-items: flex-start; padding-top: var(--header-height); }
+.dashboard-layout { display: flex; gap: 28px; align-items: flex-start; padding-top: var(--layout-top-offset); }
 .data-view { flex: 1; }
 
 /* On large screens keep the sidebar fixed so it never scrolls away. The
@@ -274,7 +286,7 @@ input:checked + .slider { background-color: var(--accent-color); }
 @media (min-width: 900px) {
     .tech-sidebar {
         position: fixed;
-        top: calc(var(--header-height) + 20px);
+        top: var(--sidebar-top-offset);
         left: calc(50% - 600px + 20px); /* align to .dashboard-wrapper left + padding */
         width: 220px;
         align-self: flex-start;
