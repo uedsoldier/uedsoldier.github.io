@@ -1,5 +1,40 @@
 {% extends "base.html" %}
 
+{% block meta %}
+{% set base = data.site_base_url or '' %}
+{% set og_image = project_data.preview_image or (project_data.images and project_data.images[0].img_path) %}
+<meta property="og:site_name" content="{{ data.languages[current_lang].name }}">
+<meta property="og:type" content="article">
+<meta property="og:title" content="{{ project_data.title }}">
+<meta property="og:description" content="{{ project_data.summary }}">
+<meta property="og:url" content="{{ base }}{{ project_data.detail_url }}">
+{% if og_image %}
+<meta property="og:image" content="{{ base }}{{ og_image }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+{% endif %}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ project_data.title }}">
+<meta name="twitter:description" content="{{ project_data.summary }}">
+{% if og_image %}<meta name="twitter:image" content="{{ base }}{{ og_image }}">{% endif %}
+
+{# JSON-LD structured data for the project/case-study #}
+{% set keywords = project_data.keywords if project_data.keywords else [] %}
+<script type="application/ld+json">
+{{ {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "headline": project_data.title,
+    "description": project_data.summary,
+    "url": base ~ project_data.detail_url,
+    "datePublished": project_data.date or "",
+    "image": (base ~ og_image) if og_image else "",
+    "author": {"@type": "Person", "name": data.languages[current_lang].name},
+    "keywords": (keywords | join(', '))
+} | tojson }}
+</script>
+{% endblock %}
+
 {% block content %}
 <main class="detail-wrapper fade-in-effect">
     <nav class="detail-nav">
@@ -11,12 +46,35 @@
             <h1 id="p-title"></h1>
             <span id="p-category"></span>
             <p id="p-summary" class="lead-text"></p>
+            <div id="p-role" class="project-role small-muted"></div>
+            <div id="p-date" class="project-date small-muted"></div>
+
+            <section id="p-problem" class="project-block">
+                <h4>Problem</h4>
+                <p id="p-problem-text"></p>
+            </section>
+
+            <section id="p-solution" class="project-block">
+                <h4>Solution</h4>
+                <p id="p-solution-text"></p>
+            </section>
+
+            <section id="p-impact" class="project-block">
+                <h4>Impact</h4>
+                <p id="p-impact-text"></p>
+            </section>
             
             <div class="tech-card">
                 <h3 id="p-tech-title">{{ tags[current_lang].technical_specifications }}</h3>
                 <div id="p-stack" class="tech-specs"></div>
+                <div id="p-metrics" class="tech-metrics"></div>
                 <ul id="p-highlights" class="highlights"></ul>
-                <a id="p-repo" href="#" target="_blank" class="btn-git">{{ tags[current_lang].repository }}</a>
+                <div class="detail-actions">
+                    <a id="p-repo" href="#" target="_blank" class="btn-git">{{ tags[current_lang].repository }}</a>
+                    <a id="p-demo" href="#" target="_blank" class="btn-git">Demo</a>
+                    <a id="p-case" href="#" target="_blank" class="btn-git">Download Case Study</a>
+                </div>
+                <div id="p-architecture" class="architecture"></div>
             </div>
         </header>
 
@@ -25,11 +83,9 @@
     </div>
 </main>
 
-<script id="project-data" type="application/json">
-    {{ project_data | tojson }}
-</script>
 <script>
     window.currentLang = "{{ current_lang }}";
+    window.projectJsonUrl = "projects/{{ project_data.slug or project_data.title | lower | replace(' ', '-') }}-{{ current_lang }}.json";
 </script>
 <script src="{{ static('js/project-detail.js') }}" defer></script>
 {% endblock %}

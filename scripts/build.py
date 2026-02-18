@@ -120,12 +120,52 @@ def resolve_static_media(project_slug: str, media_path: str, project_id: str = N
     # Fallback: devolver la ruta original (puede ser URL externa u otra ruta)
     return media_path
 
+
+def validate_and_normalize_project(project: dict, lang_code: str):
+    """Validaciones sencillas y normalizaciones sobre cada proyecto.
+    Añade `slug` si falta, advierte si faltan campos importantes y devuelve el objeto.
+    """
+    # title es obligatorio
+    if not project.get('title'):
+        print(f"⚠ Missing title for project (lang={lang_code}): {project}")
+
+    # id recomendado
+    if 'id' not in project:
+        print(f"⚠ Project missing 'id' (lang={lang_code}, title={project.get('title')}). Consider adding a stable numeric id.")
+
+    # slug
+    if not project.get('slug'):
+        if project.get('title'):
+            project['slug'] = slugify(project['title'])
+            print(f"→ Auto-generated slug for '{project.get('title')}': {project['slug']}")
+        else:
+            project['slug'] = 'untitled'
+
+    # summary
+    if not project.get('summary'):
+        print(f"⚠ Project '{project.get('title')}' has no 'summary' (lang={lang_code}). Add a 1-line TL;DR.")
+
+    # Ensure images is a list
+    if 'images' not in project or not isinstance(project.get('images'), list):
+        project['images'] = []
+
+    # Ensure tech is a list
+    if 'tech' in project and not isinstance(project.get('tech'), list):
+        project['tech'] = [project.get('tech')]
+
+    return project
+
 # =========================
 # Prepare dist/
 # =========================
 if DIST_DIR.exists():
     shutil.rmtree(DIST_DIR)
 DIST_DIR.mkdir(exist_ok=True)
+projects_dir = DIST_DIR / 'projects'
+projects_dir.mkdir(parents=True, exist_ok=True)
+
+# Collect a lightweight index for client-side search/filters
+index_list = []
 
 # =========================
 # 1. Render Project Detail Pages
@@ -134,7 +174,10 @@ template_project = env.get_template('project.html')
 
 for lang_code, content in portfolio_data['languages'].items():
     for project in content['projects']:
-        project_slug = slugify(project['title'])
+        # Validate and normalize
+        project = validate_and_normalize_project(project, lang_code)
+
+        project_slug = project.get('slug') or slugify(project.get('title', 'untitled'))
         filename = f"{project_slug}-{lang_code}.html"
         
         # Inyectamos la URL en el objeto para que el Index sepa a dónde linkear
@@ -151,6 +194,24 @@ for lang_code, content in portfolio_data['languages'].items():
         if project.get('video_url'):
             project['video_url'] = resolve_static_media(project_slug, project.get('video_url'), project_id)
 
+        # Build a flattened keywords list from `tech` or from `tech_stack` values
+        keywords = []
+        if isinstance(project.get('tech'), list) and project.get('tech'):
+            keywords.extend(project.get('tech'))
+        ts = project.get('tech_stack') or {}
+        if isinstance(ts, dict):
+            for k, v in ts.items():
+                if isinstance(v, list):
+                    keywords.extend(v)
+        # dedupe while preserving order
+        seen = set()
+        dedup = []
+        for k in keywords:
+            if k not in seen:
+                seen.add(k)
+                dedup.append(k)
+        project['keywords'] = dedup
+
         project_html = template_project.render(
             project_data=project,
             data=portfolio_data,
@@ -163,6 +224,37 @@ for lang_code, content in portfolio_data['languages'].items():
         
         (DIST_DIR / filename).write_text(min_project_html, encoding='utf-8')
         print(f'✔ Generated Project Detail: {filename}')
+
+        # Export per-project JSON for client-side fetching
+        try:
+            pjson_path = projects_dir / f"{project_slug}-{lang_code}.json"
+            pjson_path.write_text(json.dumps(project, ensure_ascii=False, indent=2), encoding='utf-8')
+        except Exception as e:
+            print(f"⚠ Failed to write project JSON for {project_slug}-{lang_code}: {e}")
+
+        # Add to index list (lightweight)
+        # produce a slightly richer index entry so the frontpage can show role/impact/preview
+        index_entry = {
+            'id': project.get('id'),
+            'slug': project_slug,
+            'title': project.get('title'),
+            'summary': project.get('summary', ''),
+            'short_summary': project.get('short_summary', ''),
+            'role': project.get('role', []),
+            'impact': project.get('impact', ''),
+            'metrics': project.get('metrics', {}),
+            'tech': project.get('tech', []) or project.get('tech_stack', {}),
+            'detail_url': project.get('detail_url'),
+            'repo_url': project.get('repo_url') or project.get('url'),
+            'demo_url': project.get('demo_url', ''),
+            'preview_image': (project.get('images') and project.get('images')[0] and project.get('images')[0].get('img_path')) or None,
+            'categories': project.get('categories', []),
+            'published': project.get('published', True),
+            'lang': lang_code,
+            'featured': project.get('featured', False),
+            'weight': project.get('weight', 0)
+        }
+        index_list.append(index_entry)
 
 # =========================
 # 2. Render Main Index
@@ -179,6 +271,11 @@ min_index_html = minify_html.minify(
 
 (DIST_DIR / 'index.html').write_text(min_index_html, encoding='utf-8')
 print(f'✔ Rendered index.html')
+try:
+    (DIST_DIR / 'index.json').write_text(json.dumps(index_list, ensure_ascii=False, indent=2), encoding='utf-8')
+    print('✔ Wrote index.json')
+except Exception as e:
+    print(f"⚠ Failed to write index.json: {e}")
 
 # =========================
 # 3. Static Files

@@ -217,7 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const placeholder = 'data:image/svg+xml;utf8,' + encodeURIComponent(placeholderSvg);
 
         // Renderizado de Proyectos con validación
-        const detailsLabel = (siteData.tags && siteData.tags[lang] && siteData.tags[lang].view_details) || ((lang === 'es') ? 'Ver Detalles Técnicos' : 'View Technical Details');
+        const detailsLabel = (siteData.tags && siteData.tags[lang] && siteData.tags[lang].view_details) || ((lang === 'es') ? 'Ver detalles' : 'View details');
 
         // Prepare filtered projects based on selectedCategories
         const allProjects = Array.isArray(content.projects) ? content.projects : [];
@@ -230,18 +230,18 @@ document.addEventListener('DOMContentLoaded', () => {
         if (currentSection === 'projects') renderCategoryFilters(lang);
 
         if (currentSection === 'projects') {
-            if (ui.projectsGrid) {
-                const cardsHtml = filteredProjects.map(proj => {
-    // Validaciones preventivas para evitar que la card quede vacía
-    const highlights = proj.highlights || [];
-    const ts = proj.tech_stack || {};
-    const stackHtml = Object.entries(ts).map(([k, v]) => {
-        const labelFromTech = siteData.tags && siteData.tags[lang] && siteData.tags[lang].tech_stack && siteData.tags[lang].tech_stack.keys && siteData.tags[lang].tech_stack.keys[k];
-        const labelFlat = siteData.tags && siteData.tags[lang] && siteData.tags[lang][k];
-        const label = labelFromTech || labelFlat || k.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-        const value = Array.isArray(v) ? v.join(' + ') : v;
-        return `<div class="spec-item"><strong>${label}:</strong> ${value || 'N/A'}</div>`;
-    }).join('');
+                if (ui.projectsGrid) {
+                    const cardsHtml = filteredProjects.map(proj => {
+                    // Validaciones preventivas para evitar que la card quede vacía
+                    const highlights = proj.highlights || [];
+                    const ts = proj.tech_stack || {};
+                    const stackHtml = Object.entries(ts).map(([k, v]) => {
+                    const labelFromTech = siteData.tags && siteData.tags[lang] && siteData.tags[lang].tech_stack && siteData.tags[lang].tech_stack.keys && siteData.tags[lang].tech_stack.keys[k];
+                    const labelFlat = siteData.tags && siteData.tags[lang] && siteData.tags[lang][k];
+                    const label = labelFromTech || labelFlat || k.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+                    const value = Array.isArray(v) ? v.join(' + ') : v;
+                    return `<div class="spec-item"><strong>${label}:</strong> ${value || 'N/A'}</div>`;
+                }).join('');
 
     return `
         <article class="card">
