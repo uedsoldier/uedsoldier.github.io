@@ -1,8 +1,24 @@
 {
   "es": {
-    "contact": {}
+    "contact": {
+      "title": "Contacto",
+      "email": "uedsoldier1990@gmail.com",
+      "phone": "+52 5510787328",
+      "linkedin": "https://www.linkedin.com/in/jos%C3%A9-roberto-parra-trewartha-13500655/",
+      "github": "https://github.com/uedsoldier",
+      "extra": "",
+      "location": "Ciudad de México, México"
+    }
   },
   "en": {
-    "contact": {}
+    "contact": {
+      "title": "Contact",
+      "email": "uedsoldier1990@gmail.com",
+      "phone": "+52 5510787328",
+      "linkedin": "https://www.linkedin.com/in/roberto-parra/",
+      "github": "https://github.com/uedsoldier",
+      "extra": "",
+      "location": "Mexico City, Mexico"
+    }
   }
 }
