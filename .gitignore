@@ -3,3 +3,4 @@ venv/
 dist/
 *.pyc
 .vscode/
+*.json.bak.*
