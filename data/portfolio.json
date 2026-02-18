@@ -20,7 +20,7 @@
                 {
                     "title": "Brazo Robótico con Control PID",
                     "id": 1,
-                    "categories": ["robotics","firmware"],
+                    "categories": ["robotics","firmware","microcontrollers"],
                     "summary": "Desarrollo de un brazo robótico de 3 GDL con control de posición preciso.",
                     "short_summary": "Brazo 3 GDL con control PID de alta precisión.",
                     "tech_stack": {
@@ -245,7 +245,7 @@
                 {
                     "title": "PID Controlled Robotic Arm",
                     "id": 1,
-                    "categories": ["robotics","firmware"],
+                    "categories": ["robotics","firmware","microcontrollers"],
                     "summary": "Development of a 3 DOF robotic arm with high-precision position control.",
                     "short_summary": "3-DOF arm with PID control for high precision.",
                     "tech_stack": {

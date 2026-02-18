@@ -10,5 +10,6 @@
   "embedded_systems": { "es": "Sistemas Embebidos", "en": "Embedded Systems", "color": "#2E7D32" },
   "web": { "es": "Web", "en": "Web", "color": "#1565C0" },
   "software": { "es": "Software", "en": "Software", "color": "#455A64" },
-  "backend": { "es": "Backend", "en": "Backend", "color": "#6D4C41" }
+  "backend": { "es": "Backend", "en": "Backend", "color": "#6D4C41" },
+  "microcontrollers": { "es": "Microcontroladores", "en": "Microcontrollers", "color": "#FF5722" }
 }
