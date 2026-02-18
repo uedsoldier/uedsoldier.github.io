@@ -180,6 +180,26 @@ input:checked + .slider { background-color: var(--accent-color); }
     box-shadow: 0 0 10px var(--accent-color);
 }
 
+/* --- Contact section & icons --- */
+.contact-section { display: flex; align-items: center; gap: 18px; }
+.contact-list { list-style: none; padding: 0; margin: 0; display: flex; gap: 12px; align-items: center; }
+.contact-list li { display: inline-flex; align-items: center; }
+.contact-link { color: var(--text-dim); display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-family: var(--font-mono); font-size: 0.85rem; }
+.contact-link:hover { color: var(--accent-color); }
+.contact-text { color: var(--text-dim); font-family: var(--font-mono); font-size: 0.85rem; }
+
+.icon { display: inline-block; vertical-align: middle; }
+.icon--contact { width: 18px; height: 18px; color: var(--text-dim); flex-shrink: 0; }
+.contact-link:hover .icon--contact { color: var(--accent-color); }
+
+/* Font Awesome / icon-font fallback styling */
+.contact-icon { font-size: 18px; line-height: 1; color: var(--text-dim); display: inline-block; width: 18px; text-align: center; }
+.contact-link:hover .contact-icon { color: var(--accent-color); }
+
+@media (max-width: 900px) {
+    .contact-section { justify-content: space-between; margin-top: 8px; }
+}
+
 /* Animación de entrada */
 @keyframes fadeInData {
     from { opacity: 0; transform: translateY(10px); }
