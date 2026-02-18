@@ -101,7 +101,8 @@ input:checked + .slider { background-color: var(--accent-color); }
     font-family: var(--font-mono);
     color: var(--text-main);
     margin: 0 0 18px 0;
-    font-size: 1.2rem;
+    font-size: 1.6rem; /* títulos más grandes */
+    font-weight: 700;
 }
 
 .card {
