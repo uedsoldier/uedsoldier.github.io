@@ -11,7 +11,7 @@
     "software": "Software",
     "deployment": "Despliegue",
     "highlights": "Aspectos Destacados",
-    "view_details": "Ver Detalles Técnicos"
+    "view_details": "Ver detalles"
     ,
     "tech_stack": {
       "order": ["hardware", "firmware", "protocols", "software", "deployment"],
@@ -38,7 +38,7 @@
     "software": "Software",
     "deployment": "Deployment",
     "highlights": "Highlights",
-    "view_details": "View Technical Details"
+    "view_details": "View details"
     ,
     "tech_stack": {
       "order": ["hardware", "firmware", "protocols", "software", "deployment"],
