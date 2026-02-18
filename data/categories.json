@@ -1,15 +1,15 @@
 {
-  "robotics": { "es": "Robótica", "en": "Robotics", "color": "#D32F2F" },
-  "firmware": { "es": "Firmware", "en": "Firmware", "color": "#E67E22" },
-  "vision": { "es": "Visión Artificial", "en": "Computer Vision", "color": "#1976D2" },
-  "integration": { "es": "Integración", "en": "Integration", "color": "#388E3C" },
-  "iot": { "es": "IoT", "en": "IoT", "color": "#8E44AD" },
-  "cloud": { "es": "Cloud", "en": "Cloud", "color": "#0D47A1" },
-  "power_electronics": { "es": "Electrónica de Potencia", "en": "Power Electronics", "color": "#F57C00" },
-  "control": { "es": "Control", "en": "Control", "color": "#00796B" },
-  "embedded_systems": { "es": "Sistemas Embebidos", "en": "Embedded Systems", "color": "#2E7D32" },
-  "web": { "es": "Web", "en": "Web", "color": "#1565C0" },
-  "software": { "es": "Software", "en": "Software", "color": "#455A64" },
-  "backend": { "es": "Backend", "en": "Backend", "color": "#6D4C41" },
-  "microcontrollers": { "es": "Microcontroladores", "en": "Microcontrollers", "color": "#FF5722" }
+  "robotics": { "es": "Robótica", "en": "Robotics", "color": "#B71C1C" },
+  "firmware": { "es": "Firmware", "en": "Firmware", "color": "#B85A18" },
+  "vision": { "es": "Visión Artificial", "en": "Computer Vision", "color": "#0F4A86" },
+  "integration": { "es": "Integración", "en": "Integration", "color": "#276B2A" },
+  "iot": { "es": "IoT", "en": "IoT", "color": "#6B2E85" },
+  "cloud": { "es": "Cloud", "en": "Cloud", "color": "#0A387F" },
+  "power_electronics": { "es": "Electrónica de Potencia", "en": "Power Electronics", "color": "#C46200" },
+  "control": { "es": "Control", "en": "Control", "color": "#005B4F" },
+  "embedded_systems": { "es": "Sistemas Embebidos", "en": "Embedded Systems", "color": "#216227" },
+  "web": { "es": "Web", "en": "Web", "color": "#0D3A8A" },
+  "software": { "es": "Software", "en": "Software", "color": "#2F4046" },
+  "backend": { "es": "Backend", "en": "Backend", "color": "#4E372E" },
+  "microcontrollers": { "es": "Microcontroladores", "en": "Microcontrollers", "color": "#D24A00" }
 }
