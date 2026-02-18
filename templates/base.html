@@ -5,6 +5,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>{{ data.languages.es.name }} | Portfolio</title>
         {% block meta %}{% endblock meta %}
+        {% if data.site_logo %}
+        <meta property="og:logo" content="{{ data.site_base_url }}{{ data.site_logo }}">
+        {% endif %}
         <meta name="description" content="{{ data.languages.es.label }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         

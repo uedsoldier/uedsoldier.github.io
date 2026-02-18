@@ -218,10 +218,19 @@ for lang_code, content in portfolio_data['languages'].items():
             current_lang=lang_code
         )
 
-        min_project_html = minify_html.minify(
-            project_html, minify_js=True, minify_css=True, remove_processing_instructions=True
-        )
-        
+        # Minify HTML but avoid removing processing instructions which some
+        # validators rely on. This keeps files compact while preserving meta tags.
+        try:
+            min_project_html = minify_html.minify(
+                project_html,
+                minify_js=True,
+                minify_css=True,
+                remove_processing_instructions=False
+            )
+        except Exception:
+            # If minifier fails for any reason, fall back to unminified HTML
+            min_project_html = project_html
+
         (DIST_DIR / filename).write_text(min_project_html, encoding='utf-8')
         print(f'✔ Generated Project Detail: {filename}')
 
@@ -265,11 +274,10 @@ index_html = template_index.render(
     data=portfolio_data
 )
 
-min_index_html = minify_html.minify(
-    index_html, minify_js=True, minify_css=True, remove_processing_instructions=True
+(DIST_DIR / 'index.html').write_text(
+    minify_html.minify(index_html, minify_js=True, minify_css=True, remove_processing_instructions=False),
+    encoding='utf-8'
 )
-
-(DIST_DIR / 'index.html').write_text(min_index_html, encoding='utf-8')
 print(f'✔ Rendered index.html')
 try:
     (DIST_DIR / 'index.json').write_text(json.dumps(index_list, ensure_ascii=False, indent=2), encoding='utf-8')
