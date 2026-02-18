@@ -136,6 +136,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (ui.educationTitle) ui.educationTitle.textContent = content.nav.education || '';
         if (ui.langLabel) ui.langLabel.textContent = (lang === 'es') ? 'EN' : 'ES';
 
+        // Show/hide entire section containers depending on the active section
+        const projectsSectionEl = document.getElementById('projects-section');
+        const skillsSectionEl = document.getElementById('skills');
+        const educationSectionEl = document.getElementById('education');
+        if (projectsSectionEl) projectsSectionEl.style.display = (currentSection === 'projects') ? '' : 'none';
+        if (skillsSectionEl) skillsSectionEl.style.display = (currentSection === 'skills') ? '' : 'none';
+        if (educationSectionEl) educationSectionEl.style.display = (currentSection === 'education') ? '' : 'none';
+
         // Helper: detectar tipo de media por extensión
         const isVideoUrl = (u) => !!(u && /\.(mp4|webm|ogg)(\?|$)/i.test(u));
         const isImageUrl = (u) => !!(u && /\.(jpe?g|png|gif|webp|svg)(\?|$)/i.test(u));
