@@ -8,6 +8,7 @@
 
 **Key files to inspect**
 - **Build script:** [scripts/build.py](../scripts/build.py) — main entry point for local builds. Look here for media-resolution rules and output behavior.
+- **Python virtualenv script:** [scripts/build.sh](../scripts/build.sh) — Checks for existing venv, sets it up if missing, and installs dependencies.
 - **Data:** [data/portfolio.json](../data/portfolio.json) — canonical source of projects, languages, labels and tech stacks.
 - **Templates:** [templates/base.html](../templates/base.html), [templates/index.html](../templates/index.html), [templates/project.html](../templates/project.html).
 - **Client code:** [static/js/app.js](../static/js/app.js), [static/js/project-detail.js](../static/js/project-detail.js).
