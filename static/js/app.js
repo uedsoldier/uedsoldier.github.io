@@ -60,6 +60,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Helper: detectar tipo de media por extensión
         const isVideoUrl = (u) => !!(u && /\.(mp4|webm|ogg)(\?|$)/i.test(u));
         const isImageUrl = (u) => !!(u && /\.(jpe?g|png|gif|webp|svg)(\?|$)/i.test(u));
+        const placeholderSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675"><rect width="100%" height="100%" fill="#f3f4f6"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#9ca3af" font-family="Arial, sans-serif" font-size="36">No media available</text></svg>';
+        const placeholder = 'data:image/svg+xml;utf8,' + encodeURIComponent(placeholderSvg);
 
         // Renderizado de Proyectos con validación
         const detailsLabel = (siteData.tags && siteData.tags[lang] && siteData.tags[lang].view_details) || ((lang === 'es') ? 'Ver Detalles Técnicos' : 'View Technical Details');
@@ -83,10 +85,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 ${(() => {
                     const v = proj.video_url;
                     if (v) {
-                        if (isVideoUrl(v)) return `<video src="${v}" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video>`;
-                        if (isImageUrl(v)) return `<img src="${v}" alt="${proj.title}" loading="lazy">`;
+                        if (isVideoUrl(v)) return `<video src="${v}" muted loop onmouseover="this.play()" onmouseout="this.pause()" onerror="this.outerHTML='<img src=\\'${placeholder}\\' alt=\\'${proj.title}\\' loading=\\'lazy\\' />'"></video>`;
+                        if (isImageUrl(v)) return `<img src="${v}" alt="${proj.title}" loading="lazy" onerror="this.onerror=null;this.src='${placeholder}';">`;
                     }
-                    return `<img src="${proj.images?.[0]?.img_path || 'static/img/placeholder.jpg'}" alt="${proj.title}" loading="lazy">`;
+                    const firstImg = proj.images?.[0]?.img_path;
+                    if (firstImg) return `<img src="${firstImg}" alt="${proj.title}" loading="lazy" onerror="this.onerror=null;this.src='${placeholder}';">`;
+                    return `<img src="${placeholder}" alt="${proj.title}" loading="lazy">`;
                 })()}
             </div>
             <div class="card-content">

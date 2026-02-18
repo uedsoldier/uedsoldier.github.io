@@ -52,14 +52,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const isVideoUrl = (u) => !!(u && /\.(mp4|webm|ogg)(\?|$)/i.test(u));
         const isImageUrl = (u) => !!(u && /\.(jpe?g|png|gif|webp|svg)(\?|$)/i.test(u));
 
+        const placeholderSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675"><rect width="100%" height="100%" fill="#f3f4f6"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#9ca3af" font-family="Arial, sans-serif" font-size="36">No media available</text></svg>';
+        const placeholder = 'data:image/svg+xml;utf8,' + encodeURIComponent(placeholderSvg);
+
         const items = [];
 
         // presentación: puede ser video o imagen vía `project.video_url`
         if (project.video_url) {
             if (isVideoUrl(project.video_url)) {
-                items.push(`<figure class="detail-item"><video src="${project.video_url}" controls class="img-expanded"></video><figcaption class="media-overlay">${project.title}</figcaption></figure>`);
+                items.push(`<figure class="detail-item"><video src="${project.video_url}" controls class="img-expanded" onerror="this.outerHTML='<img src=\"${placeholder}\" class=\"img-expanded\"/>'"></video><figcaption class="media-overlay">${project.title}</figcaption></figure>`);
             } else if (isImageUrl(project.video_url)) {
-                items.push(`<figure class="detail-item"><img src="${project.video_url}" alt="${project.title}" class="img-expanded"><figcaption class="media-overlay">${project.title}</figcaption></figure>`);
+                items.push(`<figure class="detail-item"><img src="${project.video_url}" alt="${project.title}" class="img-expanded" onerror="this.onerror=null;this.src='${placeholder}';"><figcaption class="media-overlay">${project.title}</figcaption></figure>`);
             }
         }
 
@@ -67,9 +70,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (Array.isArray(project.images)) {
             project.images.forEach(img => {
                 if (img && img.img_path) {
-                    items.push(`<figure class="detail-item"><img src="${img.img_path}" alt="${img.caption}" class="img-expanded"><figcaption class="media-overlay">${img.caption}</figcaption></figure>`);
+                    const caption = img.caption || project.title || '';
+                    items.push(`<figure class="detail-item"><img src="${img.img_path}" alt="${caption}" class="img-expanded" onerror="this.onerror=null;this.src='${placeholder}';"><figcaption class="media-overlay">${caption}</figcaption></figure>`);
                 }
             });
+        }
+
+        // Si no hay items válidos, renderizar placeholder
+        if (items.length === 0) {
+            items.push(`<figure class="detail-item"><img src="${placeholder}" alt="No media" class="img-expanded"><figcaption class="media-overlay">${project.title}</figcaption></figure>`);
         }
 
         gallery.innerHTML = items.join('');
