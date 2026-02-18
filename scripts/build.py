@@ -8,6 +8,7 @@ import time
 import minify_html
 import rjsmin
 import rcssmin
+from typing import Optional
 
 # =========================
 # Paths
@@ -69,7 +70,7 @@ def ascii_slug(text):
     return re.sub(r'[-\s]+', '-', s).strip()
 
 
-def resolve_static_media(project_slug: str, media_path: str, project_id: str = None) -> str:
+def resolve_static_media(project_slug: str, media_path: str, project_id: Optional[str] = None) -> str:
     """Resuelve una ruta de media (imagen/video) intentando, en orden:
     1) conservar `static/...` si el archivo existe,
     2) `static/img/<project_slug>/<basename>` si existe,

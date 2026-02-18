@@ -25,4 +25,17 @@ if [ ! -f "scripts/build.py" ]; then
 fi
 
 echo "Using Python: $PY"
+# Merge standalone JSON bundles into data/portfolio.json before building.
+# This keeps `data/portfolio.json` in sync with per-section files used for editing.
+echo "Merging data bundles into data/portfolio.json..."
+# Ensure per-project files are assembled into data/projects.json first
+echo "Assembling per-project files into data/projects.json..."
+"$PY" "scripts/assemble_projects_bundle.py" --projects-dir data/projects --out data/projects.json || {
+  echo "Warning: assemble_projects_bundle.py failed (continuing to merge)" >&2
+}
+
+"$PY" "scripts/merge_into_portfolio.py" --input data/portfolio.json --files data/education.json --files data/contact.json --files data/skills.json --files data/projects.json || {
+  echo "Warning: merge script failed (continuing to build)" >&2
+}
+
 exec "$PY" "scripts/build.py" "$@"

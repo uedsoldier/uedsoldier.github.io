@@ -1,0 +1,51 @@
+{
+  "title": "Weather Station and Web Dashboard",
+  "id": 5,
+  "slug": "weather-station-dashboard",
+  "role": [
+    "Fullstack Developer"
+  ],
+  "problem": "Need for environmental monitoring with visualization and data exports.",
+  "solution": "Raspberry Pi-based station with sensors and real-time WebSocket dashboard.",
+  "impact": "Real-time visualization and CSV exports for offline analysis.",
+  "metrics": {
+    "uptime_pct": 99.5
+  },
+  "categories": [
+    "embedded_systems",
+    "web"
+  ],
+  "summary": "Environmental measurement station with real-time visualization and time-series data.",
+  "short_summary": "Weather station with real-time dashboard and exports.",
+  "tech_stack": {
+    "hardware": [
+      "Raspberry Pi",
+      "BMP/DS18B20 Sensors",
+      "Anemometer"
+    ],
+    "firmware": [
+      "Python",
+      "Node.js"
+    ],
+    "protocols": [
+      "WebSocket",
+      "HTTP/REST"
+    ]
+  },
+  "url": "https://github.com/tu-usuario/estacion-meteorologica",
+  "repo_url": "https://github.com/tu-usuario/estacion-meteorologica",
+  "demo_url": "",
+  "video_url": "",
+  "highlights": [
+    "Real-time visualization and CSV export.",
+    "Automatic sensor calibration.",
+    "Threshold-based alerting."
+  ],
+  "images": [],
+  "architecture": "",
+  "published": true,
+  "featured": false,
+  "weight": 5,
+  "date": "",
+  "case_study_pdf": ""
+}

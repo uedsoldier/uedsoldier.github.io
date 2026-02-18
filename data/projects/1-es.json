@@ -1,0 +1,63 @@
+{
+  "title": "Brazo Robótico con Control PID",
+  "id": 1,
+  "slug": "brazo-robotico-pid",
+  "role": [
+    "Lead Developer"
+  ],
+  "problem": "Necesidad de control de posición preciso en manipuladores compactos.",
+  "solution": "Control PID con cinemática inversa y PCB personalizada para la etapa de potencia.",
+  "impact": "Error de posicionamiento reducido a ±0.2mm.",
+  "metrics": {
+    "position_error_mm": 0.2
+  },
+  "categories": [
+    "robotics",
+    "firmware",
+    "microcontrollers"
+  ],
+  "summary": "Desarrollo de un brazo robótico de 3 GDL con control de posición preciso.",
+  "short_summary": "Brazo 3 GDL con control PID de alta precisión.",
+  "tech_stack": {
+    "hardware": [
+      "STM32",
+      "Motores NEMA 17",
+      "Drivers A4988"
+    ],
+    "firmware": [
+      "C++",
+      "FreeRTOS"
+    ],
+    "protocols": [
+      "UART",
+      "SPI"
+    ]
+  },
+  "url": "https://github.com/tu-usuario/proyecto-brazo",
+  "repo_url": "https://github.com/tu-usuario/proyecto-brazo",
+  "demo_url": "",
+  "video_url": "demo-brazo.mp4",
+  "highlights": [
+    "Implementación de cinemática inversa en tiempo real.",
+    "Reducción del error de posicionamiento a ±0.2mm.",
+    "Diseño de PCB propia para la etapa de potencia."
+  ],
+  "images": [
+    {
+      "img_path": "brazo-render.jpg",
+      "caption": "Diseño en CAD",
+      "alt": "Render CAD del brazo robótico"
+    },
+    {
+      "img_path": "brazo-pcb.jpg",
+      "caption": "PCB Fabricada",
+      "alt": "PCB del controlador de potencia"
+    }
+  ],
+  "architecture": "",
+  "published": true,
+  "featured": true,
+  "weight": 1,
+  "date": "",
+  "case_study_pdf": ""
+}

@@ -1,0 +1,63 @@
+{
+  "title": "PID Controlled Robotic Arm",
+  "id": 1,
+  "slug": "pid-robotic-arm",
+  "role": [
+    "Lead Developer"
+  ],
+  "problem": "Need for precise position control in compact manipulators.",
+  "solution": "PID controller with inverse kinematics and custom power-stage PCB.",
+  "impact": "Positioning error reduced to ±0.2mm.",
+  "metrics": {
+    "position_error_mm": 0.2
+  },
+  "categories": [
+    "robotics",
+    "firmware",
+    "microcontrollers"
+  ],
+  "summary": "Development of a 3 DOF robotic arm with high-precision position control.",
+  "short_summary": "3-DOF arm with PID control for high precision.",
+  "tech_stack": {
+    "hardware": [
+      "STM32",
+      "NEMA 17 Motors",
+      "A4988 Drivers"
+    ],
+    "firmware": [
+      "C++",
+      "FreeRTOS"
+    ],
+    "protocols": [
+      "UART",
+      "SPI"
+    ]
+  },
+  "url": "https://github.com/tu-usuario/proyecto-brazo",
+  "repo_url": "https://github.com/tu-usuario/proyecto-brazo",
+  "demo_url": "",
+  "video_url": "demo-brazo.mp4",
+  "highlights": [
+    "Real-time inverse kinematics implementation.",
+    "Positioning error reduction to ±0.2mm.",
+    "Custom PCB design for power stage."
+  ],
+  "images": [
+    {
+      "img_path": "brazo-render.jpg",
+      "caption": "CAD Design",
+      "alt": "CAD render of the robotic arm"
+    },
+    {
+      "img_path": "brazo-pcb.jpg",
+      "caption": "Fabricated PCB",
+      "alt": "Fabricated power-stage PCB"
+    }
+  ],
+  "architecture": "",
+  "published": true,
+  "featured": true,
+  "weight": 1,
+  "date": "",
+  "case_study_pdf": ""
+}

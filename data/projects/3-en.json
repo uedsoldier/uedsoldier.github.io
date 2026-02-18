@@ -1,0 +1,51 @@
+{
+  "title": "IoT Platform for Predictive Monitoring",
+  "id": 3,
+  "slug": "iot-platform-predictive-monitoring",
+  "role": [
+    "IoT Engineer"
+  ],
+  "problem": "Need for telemetry and early warnings for industrial machines.",
+  "solution": "IoT node with efficient transmission and cloud backend for predictive analytics.",
+  "impact": "Enables failure prediction and reduced unplanned maintenance.",
+  "metrics": {
+    "predicted_failures_recall_pct": 88
+  },
+  "categories": [
+    "iot",
+    "cloud"
+  ],
+  "summary": "Telemetry system for industrial machines with cloud-based predictive analytics.",
+  "short_summary": "IoT node with telemetry and cloud analytics.",
+  "tech_stack": {
+    "hardware": [
+      "ESP32",
+      "Vibration Sensors",
+      "LTE Module"
+    ],
+    "firmware": [
+      "MicroPython",
+      "C/C++"
+    ],
+    "protocols": [
+      "MQTT",
+      "HTTP/REST"
+    ]
+  },
+  "url": "https://github.com/tu-usuario/iot-predictivo",
+  "repo_url": "https://github.com/tu-usuario/iot-predictivo",
+  "demo_url": "",
+  "video_url": "",
+  "highlights": [
+    "Failure prediction using ML models.",
+    "Low-power and efficient data transfer.",
+    "Dashboard for alerts and historical views."
+  ],
+  "images": [],
+  "architecture": "",
+  "published": true,
+  "featured": true,
+  "weight": 3,
+  "date": "",
+  "case_study_pdf": ""
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Sistema de Visión para Inspección Industrial",
+  "id": 2,
+  "slug": "sistema-vision-inspeccion",
+  "role": [
+    "Computer Vision Engineer"
+  ],
+  "problem": "Detección rápida y fiable de defectos en línea de producción.",
+  "solution": "Pipeline de visión con OpenCV, integración PLC y UI web para visualización.",
+  "impact": "Detección con >95% de precisión e integración para rechazo automático.",
+  "metrics": {
+    "precision_pct": 95
+  },
+  "categories": [
+    "vision",
+    "integration"
+  ],
+  "summary": "Implementación de un sistema de inspección basado en cámaras para detección de defectos en línea de producción.",
+  "short_summary": "Inspección en línea con detección en tiempo real.",
+  "tech_stack": {
+    "hardware": [
+      "Cámaras USB 2.0",
+      "Iluminación LED",
+      "PC Industrial"
+    ],
+    "firmware": [
+      "Python",
+      "OpenCV"
+    ],
+    "protocols": [
+      "GigE",
+      "MQTT"
+    ]
+  },
+  "url": "https://github.com/tu-usuario/vision-inspeccion",
+  "repo_url": "https://github.com/tu-usuario/vision-inspeccion",
+  "demo_url": "",
+  "video_url": "",
+  "highlights": [
+    "Detección de defectos en tiempo real con >95% de precisión.",
+    "Integración con PLC para rechazo automático.",
+    "UI web para visualizar resultados y estadísticas."
+  ],
+  "images": [],
+  "architecture": "",
+  "published": true,
+  "featured": true,
+  "weight": 2,
+  "date": "",
+  "case_study_pdf": ""
+}

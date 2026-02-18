@@ -1,0 +1,49 @@
+{
+  "title": "MQTT Server for Telemetry",
+  "id": 6,
+  "slug": "mqtt-server-telemetry",
+  "role": [
+    "Backend Engineer"
+  ],
+  "problem": "High-scale telemetry collection and distribution with optional persistence.",
+  "solution": "Scalable MQTT broker with authentication and backend routing.",
+  "impact": "High concurrency and reliable message delivery for industrial systems.",
+  "metrics": {
+    "connections_supported": 5000
+  },
+  "categories": [
+    "software",
+    "backend"
+  ],
+  "summary": "High-availability MQTT server for industrial telemetry collection and distribution.",
+  "short_summary": "MQTT broker with topic management and persistence.",
+  "tech_stack": {
+    "software": [
+      "Node.js",
+      "Aedes Broker"
+    ],
+    "protocols": [
+      "MQTT"
+    ],
+    "deployment": [
+      "Docker",
+      "systemd"
+    ]
+  },
+  "url": "https://github.com/tu-usuario/mqtt-broker",
+  "repo_url": "https://github.com/tu-usuario/mqtt-broker",
+  "demo_url": "",
+  "video_url": "",
+  "highlights": [
+    "High concurrency with optional message persistence.",
+    "Integration with backend services for telemetry routing.",
+    "Authentication and topic-based access control."
+  ],
+  "images": [],
+  "architecture": "",
+  "published": true,
+  "featured": false,
+  "weight": 6,
+  "date": "",
+  "case_study_pdf": ""
+}

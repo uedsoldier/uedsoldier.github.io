@@ -1,0 +1,51 @@
+{
+  "title": "Controlador BLDC con FOC",
+  "id": 4,
+  "slug": "controlador-bldc-foc",
+  "role": [
+    "Power Electronics Engineer"
+  ],
+  "problem": "Necesidad de control eficiente de motores BLDC con telemetría integrada.",
+  "solution": "Controlador FOC con protecciones y telemetría, optimizado en ISR.",
+  "impact": "Mejora en eficiencia y control de torque/velocidad; telemetría disponible.",
+  "metrics": {
+    "latency_ms": 2
+  },
+  "categories": [
+    "power_electronics",
+    "control"
+  ],
+  "summary": "Desarrollo de un controlador para motores BLDC usando control por orientación de campo (FOC).",
+  "short_summary": "Controlador FOC para motores BLDC con telemetría.",
+  "tech_stack": {
+    "hardware": [
+      "MCU STM32",
+      "Inversor 3-fase",
+      "Sensores de corriente"
+    ],
+    "firmware": [
+      "C/C++",
+      "ARM CMSIS"
+    ],
+    "protocols": [
+      "CAN",
+      "UART"
+    ]
+  },
+  "url": "https://github.com/tu-usuario/blcd-foc",
+  "repo_url": "https://github.com/tu-usuario/blcd-foc",
+  "demo_url": "",
+  "video_url": "",
+  "highlights": [
+    "Control FOC eficiente para torque y velocidad.",
+    "Protecciones integradas y telemetría.",
+    "Optimización de ISR para respuesta rápida."
+  ],
+  "images": [],
+  "architecture": "",
+  "published": true,
+  "featured": false,
+  "weight": 4,
+  "date": "",
+  "case_study_pdf": ""
+}
