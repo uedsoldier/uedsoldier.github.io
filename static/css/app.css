@@ -14,7 +14,7 @@
     --border-color: #242933;   
     
     --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
-    --header-height: 88px;
+    /* --header-height: 88px; */
 }
 
 /* --- Layout Base --- */
@@ -22,8 +22,8 @@ body {
     background-color: var(--bg-color);
     color: var(--text-main);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    margin: 0;
-    line-height: 1.6;
+    margin: -20px;
+    line-height: 1.5;
 }
 
 .dashboard-wrapper {
@@ -39,7 +39,8 @@ body {
     align-items: center;
     border-bottom: 2px solid var(--border-color);
     padding-bottom: 20px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
+    gap: 10px;
 }
 
 /* Sticky header so it stays visible on scroll */
@@ -137,6 +138,21 @@ input:checked + .slider { background-color: var(--accent-color); }
     margin: 15px 0;
 }
 
+/* Sticky section title that follows while scrolling */
+/* Make the Projects section title sticky so it never disappears while scrolling */
+/* Keep `#ui-projects-title` styled the same as other section titles (no sticky behavior) */
+#ui-projects-title {
+    position: static;
+    top: auto;
+    z-index: auto;
+    background: transparent;
+    padding: 0 0 18px 0;
+    display: block;
+    box-shadow: none;
+}
+
+/* No special fixed positioning for #ui-projects-title — keep it styled the
+    same as the other section titles so it behaves consistently. */
 .spec-item { margin-bottom: 5px; color: var(--text-dim); }
 
 /* --- Tags & Buttons --- */
@@ -181,10 +197,10 @@ input:checked + .slider { background-color: var(--accent-color); }
 }
 
 /* --- Contact section & icons --- */
-.contact-section { display: flex; align-items: center; gap: 18px; }
-.contact-list { list-style: none; padding: 0; margin: 0; display: flex; gap: 12px; align-items: center; }
+.contact-section { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; max-width: 320px; }
+.contact-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; align-items: flex-start; max-width: 100%; }
 .contact-list li { display: inline-flex; align-items: center; }
-.contact-link { color: var(--text-dim); display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-family: var(--font-mono); font-size: 0.85rem; }
+.contact-link { color: var(--text-dim); display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-family: var(--font-mono); font-size: 0.82rem; }
 .contact-link:hover { color: var(--accent-color); }
 .contact-text { color: var(--text-dim); font-family: var(--font-mono); font-size: 0.85rem; }
 
@@ -197,8 +213,38 @@ input:checked + .slider { background-color: var(--accent-color); }
 .contact-link:hover .contact-icon { color: var(--accent-color); }
 
 @media (max-width: 900px) {
-    .contact-section { justify-content: space-between; margin-top: 8px; }
+    .contact-section { margin-top: 8px; }
 }
+
+/* Make contact list horizontal on small screens to save vertical space */
+@media (max-width: 600px) {
+    .contact-list { flex-direction: row; gap: 10px; }
+    .contact-link { font-size: 0.9rem; }
+}
+
+/* On large screens keep contact compact and horizontal */
+@media (min-width: 900px) {
+    /* Keep contact compact on larger screens; title remains above list */
+    .contact-section { max-width: 320px; }
+    .contact-list { flex-direction: row; gap: 10px; }
+    .contact-link { font-size: 0.9rem; }
+}
+
+/* Slightly smaller title for contact area */
+#ui-contact-title { font-size: 0.95rem; margin: 0; color: var(--text-dim); font-family: var(--font-mono); font-weight: 600; }
+
+/* Profile summary tweaks: make summary stand out more than contact data */
+.profile-summary { display: flex; flex-direction: column; gap: 6px; }
+/* Make the summary wider so it has more room for name/label (larger on wide screens) */
+.profile-summary { display: flex; flex-direction: column; gap: 6px; flex: 1 1 560px; min-width: 220px; max-width: 720px; }
+#ui-name { font-size: 1.6rem; margin: 0; }
+#ui-label { font-size: 1.1rem; margin: 0; color: var(--accent-color); font-weight: 800; }
+
+/* Add a bit more vertical separation between profile summary and contact block */
+.contact-section { margin-top: 8px; }
+
+/* Make contact entries slightly more subdued than the summary */
+.contact-text, .contact-link { color: var(--text-dim); font-weight: 500; }
 
 /* Animación de entrada */
 @keyframes fadeInData {
@@ -235,16 +281,29 @@ input:checked + .slider { background-color: var(--accent-color); }
     padding: 12px 16px;
 }
 
-/* Make sidebar sticky on larger screens so nav stays visible */
-.dashboard-layout { display: flex; gap: 28px; align-items: flex-start; }
+/* Desktop layout: detach sidebar from normal flow and pin it to the left
+   so it remains visible without overlapping the content when scrolling. */
+.dashboard-layout { display: flex; gap: 28px; align-items: flex-start; padding-top: var(--header-height); }
 .data-view { flex: 1; }
 
-.tech-sidebar {
-    position: sticky;
-    top: calc(var(--header-height) + 12px);
-    align-self: flex-start;
-    max-height: calc(100vh - var(--header-height) - 24px);
-    overflow: auto;
+/* On large screens keep the sidebar fixed so it never scrolls away. The
+   left value aligns the sidebar with the left edge of the centered wrapper. */
+@media (min-width: 900px) {
+    .tech-sidebar {
+        position: fixed;
+        top: calc(var(--header-height) + 20px);
+        left: calc(50% - 600px + 20px); /* align to .dashboard-wrapper left + padding */
+        width: 220px;
+        align-self: flex-start;
+        max-height: calc(100vh - var(--header-height) - 40px);
+        overflow: auto;
+        z-index: 50; /* keep below .main-header (60) */
+    }
+
+    /* Reserve space on the left so the main content doesn't sit under the fixed sidebar */
+    .dashboard-layout { padding-left: 260px; }
+
+    /* layout padding-top handled globally to keep dashboard immediately after header */
 }
 
 .tech-sidebar nav {
@@ -324,11 +383,19 @@ input:checked + .slider { background-color: var(--accent-color); }
     .dashboard-layout { display: block; }
     .tech-sidebar { width: 100%; padding: 8px 12px; }
     .tech-sidebar nav { flex-direction: row; gap: 8px; }
+    /* On small screens allow profile-summary to shrink to full width */
+    .profile-summary { flex: 1 1 auto; min-width: 0; max-width: none; }
     .nav-link { padding: 6px 8px; }
     /* Disable sticky behavior on small screens for better UX */
     .main-header { position: static; }
     .tech-sidebar { position: static; max-height: none; overflow: visible; }
 }
+
+/* Push header controls to the far right while keeping profile+contact compact */
+.header-controls { margin-left: 0; flex: 0 0 auto; }
+
+/* Group left-side header items */
+.header-left { display: flex; align-items: center; gap: 8px; flex: 1 1 auto; }
 
 .detail-wrapper { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
 .detail-nav { margin-bottom: 30px; }
