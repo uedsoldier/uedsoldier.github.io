@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         navProjects: document.getElementById('nav-projects'),
         navSkills: document.getElementById('nav-skills'),
         navEducation: document.getElementById('nav-education'),
+        projectsTitle: document.getElementById('ui-projects-title'),
         projectsGrid: document.getElementById('projects'),
         skillsTitle: document.getElementById('ui-skills-title'),
         skillsDisplay: document.getElementById('skills-display'),
@@ -22,6 +23,82 @@ document.addEventListener('DOMContentLoaded', () => {
         educationDisplay: document.getElementById('education-display'),
         langBtn: document.getElementById('lang-btn'),
         langLabel: document.getElementById('lang-label')
+    };
+
+    // Estado de filtros: categorías seleccionadas (keys)
+    const selectedCategories = new Set();
+
+    // Sección actualmente activa (projects | skills | education)
+    let currentSection = 'projects';
+
+    // Renderiza el listado de filtros de categoría dentro de la sidebar
+    const renderCategoryFilters = (lang) => {
+        const container = document.getElementById('category-filters');
+        if (!container) return;
+        const categoriesMap = siteData.categories_map || {};
+        const keys = Object.keys(categoriesMap || {});
+        if (keys.length === 0) {
+            container.innerHTML = '';
+            return;
+        }
+
+        // sort keys by localized label for stable order
+        keys.sort((a,b) => {
+            const la = (categoriesMap[a] && categoriesMap[a][lang]) || a;
+            const lb = (categoriesMap[b] && categoriesMap[b][lang]) || b;
+            try { return la.localeCompare(lb, lang); } catch (e) { return String(la).localeCompare(String(lb)); }
+        });
+
+        // helper: convert hex to rgb object
+        const hexToRgb = (hex) => {
+            if (!hex) return {r:119,g:119,b:119};
+            let h = String(hex).replace('#','').trim();
+            if (h.length === 3) h = h.split('').map(ch => ch+ch).join('');
+            if (h.length !== 6) return {r:119,g:119,b:119};
+            const r = parseInt(h.substr(0,2),16);
+            const g = parseInt(h.substr(2,2),16);
+            const b = parseInt(h.substr(4,2),16);
+            return {r,g,b};
+        };
+
+        const items = keys.map(k => {
+            const meta = categoriesMap[k] || {};
+            const label = (meta && meta[lang]) || k;
+            const hex = (meta && meta.color) || '#777777';
+            const rgb = hexToRgb(hex);
+            // translucent background and soft border for less aggressive look
+            const bgRgba = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.10)`;
+            const borderRgba = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.22)`;
+            // use consistent app foreground color for label text to match theme
+            const checked = selectedCategories.has(k) ? 'checked' : '';
+            const style = `background-color:${bgRgba}; border:1px solid ${borderRgba}; color:var(--text-main);`;
+            return `<li class="cat-filter-item"><label class="cat-filter" style="${style}"><input type="checkbox" data-cat="${k}" ${checked}> ${label}</label></li>`;
+        });
+
+        const titleLabel = (siteData.tags && siteData.tags[lang] && siteData.tags[lang].filters) || 'Filters';
+        const clearLabel = (siteData.tags && siteData.tags[lang] && siteData.tags[lang].clear) || 'Clear';
+        container.innerHTML = `<div class="filters-title">${titleLabel}</div><ul class="filters-list">${items.join('')}</ul><button id="clear-cat-filters" class="btn-small">${clearLabel}</button>`;
+
+        // wire events and toggle selected class
+        container.querySelectorAll('input[data-cat]').forEach(inp => {
+            const labelEl = inp.closest('.cat-filter');
+            if (labelEl) labelEl.classList.toggle('selected', inp.checked);
+            inp.addEventListener('change', (e) => {
+                const key = inp.getAttribute('data-cat');
+                if (!key) return;
+                if (inp.checked) {
+                    selectedCategories.add(key);
+                    if (labelEl) labelEl.classList.add('selected');
+                } else {
+                    selectedCategories.delete(key);
+                    if (labelEl) labelEl.classList.remove('selected');
+                }
+                // re-render UI with filters applied
+                updateUI(currentLang);
+            });
+        });
+        const clearBtn = container.querySelector('#clear-cat-filters');
+        if (clearBtn) clearBtn.addEventListener('click', () => { selectedCategories.clear(); renderCategoryFilters(currentLang); updateUI(currentLang); });
     };
 
     // 4. Función de Renderizado (Actualización del Sistema)
@@ -52,9 +129,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (ui.name) ui.name.textContent = content.name;
         if (ui.label) ui.label.textContent = content.label;
         if (ui.navProjects) ui.navProjects.textContent = content.nav.projects;
+        if (ui.projectsTitle) ui.projectsTitle.textContent = content.nav.projects;
         if (ui.navSkills) ui.navSkills.textContent = content.nav.skills;
-        if (ui.navEducation) ui.navEducation.textContent = content.nav.education || '';
         if (ui.skillsTitle) ui.skillsTitle.textContent = content.nav.skills;
+        if (ui.navEducation) ui.navEducation.textContent = content.nav.education || '';
+        if (ui.educationTitle) ui.educationTitle.textContent = content.nav.education || '';
         if (ui.langLabel) ui.langLabel.textContent = (lang === 'es') ? 'EN' : 'ES';
 
         // Helper: detectar tipo de media por extensión
@@ -66,8 +145,19 @@ document.addEventListener('DOMContentLoaded', () => {
         // Renderizado de Proyectos con validación
         const detailsLabel = (siteData.tags && siteData.tags[lang] && siteData.tags[lang].view_details) || ((lang === 'es') ? 'Ver Detalles Técnicos' : 'View Technical Details');
 
-        if (ui.projectsGrid) {
-            ui.projectsGrid.innerHTML = content.projects.map(proj => {
+        // Prepare filtered projects based on selectedCategories
+        const allProjects = Array.isArray(content.projects) ? content.projects : [];
+        const filteredProjects = (selectedCategories.size === 0) ? allProjects : allProjects.filter(p => {
+            const cats = p.categories || [];
+            return cats.some(c => selectedCategories.has(c));
+        });
+
+        // render category filters (localized) only when showing projects
+        if (currentSection === 'projects') renderCategoryFilters(lang);
+
+        if (currentSection === 'projects') {
+            if (ui.projectsGrid) {
+                const cardsHtml = filteredProjects.map(proj => {
     // Validaciones preventivas para evitar que la card quede vacía
     const highlights = proj.highlights || [];
     const ts = proj.tech_stack || {};
@@ -118,12 +208,18 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         </article>
     `;
-            }).join('');
+                }).join('');
+                // render only the cards into the grid; the title element is separate in the template
+                ui.projectsGrid.innerHTML = cardsHtml;
+            }
+        } else {
+            if (ui.projectsGrid) ui.projectsGrid.innerHTML = '';
         }
 
-        // Renderizado de Skills con validación
-        if (ui.skillsDisplay && content.skills) {
-            ui.skillsDisplay.innerHTML = content.skills.map(group => `
+        // Renderizado de Skills con validación (solo cuando la sección active es 'skills')
+        if (currentSection === 'skills') {
+            if (ui.skillsDisplay && content.skills) {
+                ui.skillsDisplay.innerHTML = content.skills.map(group => `
             <div class="skill-group">
                 <h4>${group.category}</h4>
                 <div class="tags">
@@ -131,12 +227,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
         `).join('');
+            }
+        } else {
+            if (ui.skillsDisplay) ui.skillsDisplay.innerHTML = '';
         }
 
-        // Render Education
-        if (ui.educationDisplay && content.education) {
-            if (ui.educationTitle) ui.educationTitle.textContent = content.nav.education || '';
-            ui.educationDisplay.innerHTML = content.education.map(edu => `
+        // Render Education (solo cuando la sección active es 'education')
+        if (currentSection === 'education') {
+            if (ui.educationDisplay && content.education) {
+                if (ui.educationTitle) ui.educationTitle.textContent = content.nav.education || '';
+                ui.educationDisplay.innerHTML = content.education.map(edu => `
                 <div class="education-item">
                     <div class="edu-header">
                         <h3>${edu.school || ''} <span class="edu-years">(${edu.start_year || ''} - ${edu.end_year || ''})</span></h3>
@@ -148,6 +248,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     ${edu.url ? `<a href="${edu.url}" target="_blank">Ver trabajo</a>` : ''}
                 </div>
             `).join('');
+            }
+        } else {
+            if (ui.educationDisplay) ui.educationDisplay.innerHTML = '';
         }
     };
 
@@ -172,6 +275,15 @@ document.addEventListener('DOMContentLoaded', () => {
             if (href === `#${id}`) a.classList.add('active');
             else a.classList.remove('active');
         });
+        // show filters only when viewing the projects section
+        const filtersContainer = document.getElementById('category-filters');
+        if (filtersContainer) {
+            if (id === 'projects') filtersContainer.style.display = '';
+            else filtersContainer.style.display = 'none';
+        }
+        // track current section and trigger UI update for that section
+        currentSection = id;
+        updateUI(currentLang);
     }
 
     // Click handlers to set active immediately when user clicks a nav link
@@ -206,6 +318,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // If page opened with a hash, mark the corresponding nav item active
     const initialHash = window.location.hash.slice(1);
     if (initialHash) setActiveById(initialHash);
+    else setActiveById('projects');
 
     // Update active state when the URL hash changes (back/forward navigation)
     window.addEventListener('hashchange', () => {
