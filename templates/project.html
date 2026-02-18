@@ -50,17 +50,17 @@
             <div id="p-date" class="project-date small-muted"></div>
 
             <section id="p-problem" class="project-block">
-                <h4>Problem</h4>
+                <h4>{{ tags[current_lang].problem }}</h4>
                 <p id="p-problem-text"></p>
             </section>
 
             <section id="p-solution" class="project-block">
-                <h4>Solution</h4>
+                <h4>{{ tags[current_lang].solution }}</h4>
                 <p id="p-solution-text"></p>
             </section>
 
             <section id="p-impact" class="project-block">
-                <h4>Impact</h4>
+                <h4>{{ tags[current_lang].impact }}</h4>
                 <p id="p-impact-text"></p>
             </section>
             
@@ -71,8 +71,8 @@
                 <ul id="p-highlights" class="highlights"></ul>
                 <div class="detail-actions">
                     <a id="p-repo" href="#" target="_blank" class="btn-git">{{ tags[current_lang].repository }}</a>
-                    <a id="p-demo" href="#" target="_blank" class="btn-git">Demo</a>
-                    <a id="p-case" href="#" target="_blank" class="btn-git">Download Case Study</a>
+                    <a id="p-demo" href="#" target="_blank" class="btn-git">{{ tags[current_lang].demo }}</a>
+                    <a id="p-case" href="#" target="_blank" class="btn-git">{{ tags[current_lang].case_study }}</a>
                 </div>
                 <div id="p-architecture" class="architecture"></div>
             </div>
