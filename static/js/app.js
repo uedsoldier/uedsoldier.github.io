@@ -21,9 +21,18 @@ document.addEventListener('DOMContentLoaded', () => {
         skillsDisplay: document.getElementById('skills-display'),
         educationTitle: document.getElementById('ui-education-title'),
         educationDisplay: document.getElementById('education-display'),
-        langBtn: document.getElementById('lang-btn'),
-        langLabel: document.getElementById('lang-label')
+        langEnBtn: document.getElementById('lang-en-btn'),
+        langEsBtn: document.getElementById('lang-es-btn')
     };
+
+    // Contact elements
+    ui.contactTitle = document.getElementById('ui-contact-title');
+    ui.contactEmail = document.getElementById('contact-email');
+    ui.contactPhone = document.getElementById('contact-phone');
+    ui.contactLinkedin = document.getElementById('contact-linkedin');
+    ui.contactGithub = document.getElementById('contact-github');
+    ui.contactExtra = document.getElementById('contact-extra');
+    ui.contactLocation = document.getElementById('contact-location');
 
     // Estado de filtros: categorías seleccionadas (keys)
     const selectedCategories = new Set();
@@ -134,7 +143,61 @@ document.addEventListener('DOMContentLoaded', () => {
         if (ui.skillsTitle) ui.skillsTitle.textContent = content.nav.skills;
         if (ui.navEducation) ui.navEducation.textContent = content.nav.education || '';
         if (ui.educationTitle) ui.educationTitle.textContent = content.nav.education || '';
-        if (ui.langLabel) ui.langLabel.textContent = (lang === 'es') ? 'EN' : 'ES';
+        // mark active language button
+        if (ui.langEnBtn) ui.langEnBtn.classList.toggle('active', lang === 'en');
+        if (ui.langEsBtn) ui.langEsBtn.classList.toggle('active', lang === 'es');
+
+        // Populate contact information (if present in the language block)
+        const contact = content.contact || {};
+        if (ui.contactTitle) ui.contactTitle.textContent = (content.nav && content.nav.contact) || contact.title || '';
+
+        // Localized short labels for ARIA (fallback to English)
+        const localizedLabels = {
+            email: (lang === 'es') ? 'Correo' : 'Email',
+            phone: (lang === 'es') ? 'Teléfono' : 'Phone',
+            whatsapp: (lang === 'es') ? 'WhatsApp' : 'WhatsApp',
+            linkedin: 'LinkedIn',
+            github: 'GitHub',
+            extra: (lang === 'es') ? 'Enlace' : 'Link',
+            location: (lang === 'es') ? 'Ubicación' : 'Location'
+        };
+
+        if (ui.contactEmail) {
+            const email = contact.email || '';
+            ui.contactEmail.href = email ? `mailto:${email}` : 'mailto:';
+            const readable = email ? `${localizedLabels.email}: ${email}` : localizedLabels.email;
+            ui.contactEmail.setAttribute('aria-label', readable);
+        }
+        if (ui.contactPhone) {
+            const phone = contact.phone || '';
+            ui.contactPhone.href = phone ? `tel:${phone.replace(/\s+/g,'')}` : 'tel:';
+            const readable = phone ? `${localizedLabels.phone}: ${phone}` : localizedLabels.phone;
+            ui.contactPhone.setAttribute('aria-label', readable);
+        }
+        if (ui.contactLinkedin) {
+            const v = contact.linkedin || '';
+            ui.contactLinkedin.href = v || '';
+            const readable = v ? `${localizedLabels.linkedin}: ${v}` : localizedLabels.linkedin;
+            ui.contactLinkedin.setAttribute('aria-label', readable);
+        }
+        if (ui.contactGithub) {
+            const v = contact.github || '';
+            ui.contactGithub.href = v || '';
+            const readable = v ? `${localizedLabels.github}: ${v}` : localizedLabels.github;
+            ui.contactGithub.setAttribute('aria-label', readable);
+        }
+        if (ui.contactExtra) {
+            const v = contact.extra || '';
+            ui.contactExtra.href = v || '';
+            const readable = v ? `${localizedLabels.extra}: ${v}` : localizedLabels.extra;
+            ui.contactExtra.setAttribute('aria-label', readable);
+        }
+        if (ui.contactLocation) {
+            const loc = contact.location || '';
+            ui.contactLocation.textContent = loc;
+            const readable = loc ? `${localizedLabels.location}: ${loc}` : localizedLabels.location;
+            ui.contactLocation.setAttribute('aria-label', readable);
+        }
 
         // Show/hide entire section containers depending on the active section
         const projectsSectionEl = document.getElementById('projects-section');
@@ -143,6 +206,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (projectsSectionEl) projectsSectionEl.style.display = (currentSection === 'projects') ? '' : 'none';
         if (skillsSectionEl) skillsSectionEl.style.display = (currentSection === 'skills') ? '' : 'none';
         if (educationSectionEl) educationSectionEl.style.display = (currentSection === 'education') ? '' : 'none';
+
+        // Keep the Projects section title visible when viewing projects by making the
+        // actual section heading sticky via CSS. No JS update needed here.
 
         // Helper: detectar tipo de media por extensión
         const isVideoUrl = (u) => !!(u && /\.(mp4|webm|ogg)(\?|$)/i.test(u));
@@ -262,10 +328,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // 5. Listener del Switch (Interrupción de Usuario)
-    if (ui.langBtn) {
-        ui.langBtn.addEventListener('click', () => {
-            currentLang = (currentLang === 'es') ? 'en' : 'es';
+    // 5. Language buttons (Interrupción de Usuario)
+    if (ui.langEnBtn) {
+        ui.langEnBtn.addEventListener('click', () => {
+            currentLang = 'en';
+            updateUI(currentLang);
+        });
+    }
+    if (ui.langEsBtn) {
+        ui.langEsBtn.addEventListener('click', () => {
+            currentLang = 'es';
             updateUI(currentLang);
         });
     }
@@ -306,7 +378,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // IntersectionObserver to highlight based on section in viewport
-    const observerOptions = { root: null, rootMargin: '0px 0px -45% 0px', threshold: 0 };
+    const observerOptions = { root: null, rootMargin: '0px 0px -75% 0px', threshold: 0 };
     const observer = new IntersectionObserver((entries) => {
         // pick the entry that is intersecting and has the largest intersectionRatio
         const visible = entries.filter(e => e.isIntersecting);
@@ -317,6 +389,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (id) setActiveById(id);
         }
     }, observerOptions);
+
+    // No resize handler needed for sticky title behavior.
 
     sectionIds.forEach(id => {
         const el = document.getElementById(id);
