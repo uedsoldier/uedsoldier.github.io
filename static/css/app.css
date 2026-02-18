@@ -4,9 +4,9 @@
     --bg-color: #0b0e14;       
     --card-bg: #151921;        
     
-    /* Acento: Naranja Ámbar (Industrial/Gruvbox) o Azul Glaciar */
-    --accent-color: #e67e22;   /* Un naranja quemado profesional */
-    --accent-glow: rgba(230, 126, 34, 0.3);
+    /* Acento: Azul claro (reemplazado) */
+    --accent-color: #58a6ff;   /* Azul claro, buen contraste sobre fondo oscuro */
+    --accent-glow: rgba(88, 166, 255, 0.25);
 
     /* Texto */
     --text-main: #d1d5db;      /* Gris claro (Darcula style) */
@@ -14,7 +14,7 @@
     --border-color: #242933;   
     
     --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
-    /* --header-height: 88px; */
+    --header-height: 100px;
 }
 
 /* --- Layout Base --- */
@@ -37,14 +37,9 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 2px solid var(--border-color);
-    padding-bottom: 20px;
-    margin-bottom: 10px;
     gap: 10px;
-}
-
-/* Sticky header so it stays visible on scroll */
-.main-header {
+    border-bottom: 2px solid var(--border-color);
+    margin-bottom: 10px;
     position: sticky;
     top: 0;
     background: linear-gradient(180deg, rgba(11,14,20,0.98), rgba(11,14,20,0.95));
@@ -85,6 +80,7 @@ input:checked + .slider { background-color: var(--accent-color); }
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 25px;
+    min-height: 200px;
 }
 
 /* Projects section header (distinct from tags/filters) */
@@ -108,15 +104,19 @@ input:checked + .slider { background-color: var(--accent-color); }
 
 .card {
     background: var(--card-bg);
+    display: block;
     border: 1px solid var(--border-color);
     border-radius: 8px;
     overflow: hidden;
     transition: transform 0.2s, border-color 0.2s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    color: var(--text-main);
 }
 
 .card:hover {
     border-color: var(--accent-color);
     transform: translateY(-5px);
+    box-shadow: 0 0 15px var(--accent-glow);
 }
 
 .card-media img, .card-media video {
@@ -241,7 +241,7 @@ input:checked + .slider { background-color: var(--accent-color); }
 #ui-label { font-size: 1.1rem; margin: 0; color: var(--accent-color); font-weight: 800; }
 
 /* Add a bit more vertical separation between profile summary and contact block */
-.contact-section { margin-top: 8px; }
+/* margin folded into the main .contact-section declaration above */
 
 /* Make contact entries slightly more subdued than the summary */
 .contact-text, .contact-link { color: var(--text-dim); font-weight: 500; }
@@ -256,24 +256,7 @@ input:checked + .slider { background-color: var(--accent-color); }
     animation: fadeInData 0.4s ease-out forwards;
 }
 
-/* Mejora de la Card para este tema */
-.card {
-    background: var(--card-bg);
-    display: block !important;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-    color: var(--text-main);
-}
-
-.card:hover {
-    border-color: var(--accent-color);
-    box-shadow: 0 0 15px var(--accent-glow);
-}
-
-.project-grid {
-    display: grid !important;            /* Verifica que no esté en 'none' */
-    min-height: 200px;                   /* Para ver si el contenedor existe */
-}
+/* Duplicate card/project-grid rules removed (consolidated earlier) */
 
 /* --- Sidebar / Navegación --- */
 .tech-sidebar {
@@ -354,7 +337,7 @@ input:checked + .slider { background-color: var(--accent-color); }
 
 /* Active nav link highlight */
 .nav-link.active {
-    background: linear-gradient(90deg, rgba(230,126,34,0.08), rgba(230,126,34,0.04));
+    background: linear-gradient(90deg, rgba(88,166,255,0.08), rgba(88,166,255,0.04));
     color: var(--accent-color);
     border-left: 3px solid var(--accent-color);
     padding-left: 8px; /* visually align with border */
