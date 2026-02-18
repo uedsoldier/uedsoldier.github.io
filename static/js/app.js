@@ -57,10 +57,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (ui.skillsTitle) ui.skillsTitle.textContent = content.nav.skills;
         if (ui.langLabel) ui.langLabel.textContent = (lang === 'es') ? 'EN' : 'ES';
 
+        // Helper: detectar tipo de media por extensión
+        const isVideoUrl = (u) => !!(u && /\.(mp4|webm|ogg)(\?|$)/i.test(u));
+        const isImageUrl = (u) => !!(u && /\.(jpe?g|png|gif|webp|svg)(\?|$)/i.test(u));
+
         // Renderizado de Proyectos con validación
         const detailsLabel = (siteData.tags && siteData.tags[lang] && siteData.tags[lang].view_details) || ((lang === 'es') ? 'Ver Detalles Técnicos' : 'View Technical Details');
 
-        ui.projectsGrid.innerHTML = content.projects.map(proj => {
+        if (ui.projectsGrid) {
+            ui.projectsGrid.innerHTML = content.projects.map(proj => {
     // Validaciones preventivas para evitar que la card quede vacía
     const highlights = proj.highlights || [];
     const ts = proj.tech_stack || {};
@@ -75,10 +80,14 @@ document.addEventListener('DOMContentLoaded', () => {
     return `
         <article class="card">
             <div class="card-media">
-                ${proj.video_url ? 
-                    `<video src="${proj.video_url}" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video>` : 
-                    `<img src="${proj.images?.[0]?.img_path || 'static/img/placeholder.jpg'}" alt="${proj.title}" loading="lazy">`
-                }
+                ${(() => {
+                    const v = proj.video_url;
+                    if (v) {
+                        if (isVideoUrl(v)) return `<video src="${v}" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video>`;
+                        if (isImageUrl(v)) return `<img src="${v}" alt="${proj.title}" loading="lazy">`;
+                    }
+                    return `<img src="${proj.images?.[0]?.img_path || 'static/img/placeholder.jpg'}" alt="${proj.title}" loading="lazy">`;
+                })()}
             </div>
             <div class="card-content">
                 <div class="card-header">
@@ -105,7 +114,8 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         </article>
     `;
-}).join('');
+            }).join('');
+        }
 
         // Renderizado de Skills con validación
         if (ui.skillsDisplay && content.skills) {

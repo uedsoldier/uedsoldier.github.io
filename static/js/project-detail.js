@@ -46,15 +46,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const techTitleEl = document.getElementById('p-tech-title');
     if (techTitleEl && labels.technical_specifications) techTitleEl.textContent = labels.technical_specifications;
 
-    // Galería de imágenes grandes
+    // Galería de imágenes grandes + presentación (video o imagen)
     const gallery = document.getElementById('p-gallery');
-        if (gallery && project.images) {
-        gallery.innerHTML = project.images.map(img => `
-            <figure class="detail-item">
-                <img src="${img.img_path}" alt="${img.caption}" class="img-expanded">
-                <figcaption class="media-overlay">${img.caption}</figcaption>
-            </figure>
-        `).join('');
+    if (gallery) {
+        const isVideoUrl = (u) => !!(u && /\.(mp4|webm|ogg)(\?|$)/i.test(u));
+        const isImageUrl = (u) => !!(u && /\.(jpe?g|png|gif|webp|svg)(\?|$)/i.test(u));
+
+        const items = [];
+
+        // presentación: puede ser video o imagen vía `project.video_url`
+        if (project.video_url) {
+            if (isVideoUrl(project.video_url)) {
+                items.push(`<figure class="detail-item"><video src="${project.video_url}" controls class="img-expanded"></video><figcaption class="media-overlay">${project.title}</figcaption></figure>`);
+            } else if (isImageUrl(project.video_url)) {
+                items.push(`<figure class="detail-item"><img src="${project.video_url}" alt="${project.title}" class="img-expanded"><figcaption class="media-overlay">${project.title}</figcaption></figure>`);
+            }
+        }
+
+        // resto de imágenes
+        if (Array.isArray(project.images)) {
+            project.images.forEach(img => {
+                if (img && img.img_path) {
+                    items.push(`<figure class="detail-item"><img src="${img.img_path}" alt="${img.caption}" class="img-expanded"><figcaption class="media-overlay">${img.caption}</figcaption></figure>`);
+                }
+            });
+        }
+
+        gallery.innerHTML = items.join('');
     }
 
     // Highlights y Tech Stack
