@@ -39,7 +39,7 @@
                         ]
                     },
                     "url": "https://github.com/tu-usuario/proyecto-brazo",
-                    "video_url": "static/img/demo-brazo.mp4",
+                    "video_url": "demo-brazo.mp4",
                     "highlights": [
                         "Implementación de cinemática inversa en tiempo real.",
                         "Reducción del error de posicionamiento a ±0.2mm.",
@@ -47,11 +47,11 @@
                     ],
                     "images": [
                         {
-                            "img_path": "static/img/brazo-render.jpg",
+                            "img_path": "brazo-render.jpg",
                             "caption": "Diseño en CAD"
                         },
                         {
-                            "img_path": "static/img/brazo-pcb.jpg",
+                            "img_path": "brazo-pcb.jpg",
                             "caption": "PCB Fabricada"
                         }
                     ]
@@ -79,15 +79,13 @@
                         ]
                     },
                     "url": "https://github.com/tu-usuario/vision-inspeccion",
-                    "video_url": "static/img/demo-vision.mp4",
+                    "video_url": "",
                     "highlights": [
                         "Detección de defectos en tiempo real con >95% de precisión.",
                         "Integración con PLC para rechazo automático.",
                         "UI web para visualizar resultados y estadísticas." 
                     ],
-                    "images": [
-                        { "img_path": "static/img/vision-rig.jpg", "caption": "Equipo de inspección montado" }
-                    ]
+                    "images": []
                 },
                 {
                     "title": "Plataforma IoT para Monitoreo Predictivo",
@@ -111,15 +109,13 @@
                         ]
                     },
                     "url": "https://github.com/tu-usuario/iot-predictivo",
-                    "video_url": "static/img/demo-iot.mp4",
+                    "video_url": "",
                     "highlights": [
                         "Predicción de fallos con modelos basados en ML.",
                         "Bajo consumo y transmisión eficiente de datos.",
                         "Dashboard para alertas y visualización histórica." 
                     ],
-                    "images": [
-                        { "img_path": "static/img/iot-nodo.jpg", "caption": "Nodo IoT con sensores" }
-                    ]
+                    "images": []
                 },
                 {
                     "title": "Controlador BLDC con FOC",
@@ -143,15 +139,13 @@
                         ]
                     },
                     "url": "https://github.com/tu-usuario/blcd-foc",
-                    "video_url": "static/img/demo-blcd.mp4",
+                    "video_url": "",
                     "highlights": [
                         "Control FOC eficiente para torque y velocidad.",
                         "Protecciones integradas y telemetría.",
                         "Optimización de ISR para respuesta rápida." 
                     ],
-                    "images": [
-                        { "img_path": "static/img/blcd-board.jpg", "caption": "PCB del controlador" }
-                    ]
+                    "images": []
                 },
                 {
                     "title": "Estación Meteorológica y Dashboard Web",
@@ -175,15 +169,13 @@
                         ]
                     },
                     "url": "https://github.com/tu-usuario/estacion-meteorologica",
-                    "video_url": "static/img/demo-estacion.mp4",
+                    "video_url": "",
                     "highlights": [
                         "Visualización de datos en tiempo real y exportación CSV.",
                         "Calibración automática de sensores.",
                         "Implementación de alertas por umbral." 
                     ],
-                    "images": [
-                        { "img_path": "static/img/estacion-outdoor.jpg", "caption": "Estación instalada" }
-                    ]
+                    "images": []
                 },
                 {
                     "title": "Servidor MQTT para Telemetría",
@@ -272,7 +264,7 @@
                         ]
                     },
                     "url": "https://github.com/tu-usuario/proyecto-brazo",
-                    "video_url": "static/img/demo-brazo.mp4",
+                    "video_url": "demo-brazo.mp4",
                     "highlights": [
                         "Real-time inverse kinematics implementation.",
                         "Positioning error reduction to ±0.2mm.",
@@ -280,11 +272,11 @@
                     ],
                     "images": [
                         {
-                            "img_path": "static/img/brazo-render.jpg",
+                            "img_path": "brazo-render.jpg",
                             "caption": "CAD Design"
                         },
                         {
-                            "img_path": "static/img/brazo-pcb.jpg",
+                            "img_path": "brazo-pcb.jpg",
                             "caption": "Fabricated PCB"
                         }
                     ]
@@ -312,15 +304,13 @@
                         ]
                     },
                     "url": "https://github.com/tu-usuario/vision-inspeccion",
-                    "video_url": "static/img/demo-vision.mp4",
+                    "video_url": "",
                     "highlights": [
                         "Real-time defect detection with >95% accuracy.",
                         "PLC integration for automatic rejection.",
                         "Web UI for results and statistics." 
                     ],
-                    "images": [
-                        { "img_path": "static/img/vision-rig.jpg", "caption": "Inspection rig mounted" }
-                    ]
+                    "images": []
                 },
                 {
                     "title": "IoT Platform for Predictive Monitoring",
@@ -344,15 +334,13 @@
                         ]
                     },
                     "url": "https://github.com/tu-usuario/iot-predictivo",
-                    "video_url": "static/img/demo-iot.mp4",
+                    "video_url": "",
                     "highlights": [
                         "Failure prediction using ML models.",
                         "Low-power and efficient data transfer.",
                         "Dashboard for alerts and historical views." 
                     ],
-                    "images": [
-                        { "img_path": "static/img/iot-nodo.jpg", "caption": "IoT node with sensors" }
-                    ]
+                    "images": []
                 },
                 {
                     "title": "BLDC Controller with FOC",
@@ -376,15 +364,13 @@
                         ]
                     },
                     "url": "https://github.com/tu-usuario/blcd-foc",
-                    "video_url": "static/img/demo-blcd.mp4",
+                    "video_url": "",
                     "highlights": [
                         "Efficient FOC for torque and speed control.",
                         "Built-in protections and telemetry.",
                         "ISR optimization for fast response." 
                     ],
-                    "images": [
-                        { "img_path": "static/img/blcd-board.jpg", "caption": "Controller PCB" }
-                    ]
+                    "images": []
                 },
                 {
                     "title": "Weather Station and Web Dashboard",
@@ -408,15 +394,13 @@
                         ]
                     },
                     "url": "https://github.com/tu-usuario/estacion-meteorologica",
-                    "video_url": "static/img/demo-estacion.mp4",
+                    "video_url": "",
                     "highlights": [
                         "Real-time visualization and CSV export.",
                         "Automatic sensor calibration.",
                         "Threshold-based alerting." 
                     ],
-                    "images": [
-                        { "img_path": "static/img/estacion-outdoor.jpg", "caption": "Installed station" }
-                    ]
+                    "images": []
                 },
                 {
                     "title": "MQTT Server for Telemetry",
