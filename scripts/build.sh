@@ -34,6 +34,12 @@ echo "Assembling per-project files into data/projects.json..."
   echo "Warning: assemble_projects_bundle.py failed (continuing to merge)" >&2
 }
 
+# If portfolio.json is missing, abort — user must provide or restore it.
+if [ ! -f data/portfolio.json ]; then
+  echo "Error: data/portfolio.json not found. Please restore or generate it before building." >&2
+  exit 1
+fi
+
 "$PY" "scripts/merge_into_portfolio.py" --input data/portfolio.json --files data/education.json --files data/contact.json --files data/skills.json --files data/projects.json || {
   echo "Warning: merge script failed (continuing to build)" >&2
 }
