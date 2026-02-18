@@ -1,6 +1,7 @@
 {
   "name": "uedsoldier.github.io",
   "version": "1.0.0",
+  "description": "Personal page",
   "private": true,
   "scripts": {
     "start": "npm run build && npm run serve",
