@@ -1,6 +1,6 @@
 {
   "es": {
-    "filters": "Filtros",
+    "filters": "Filtros por tecnología",
     "clear": "Limpiar",
     "technical_specifications": "ESPECIFICACIONES TÉCNICAS",
     "repository": "REPOSITORIO GITHUB",
@@ -27,7 +27,7 @@
     }
   },
   "en": {
-    "filters": "Filters",
+    "filters": "Filters by technology",
     "clear": "Clear",
     "technical_specifications": "TECHNICAL SPECIFICATIONS",
     "repository": "GITHUB REPOSITORY",
