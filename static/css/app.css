@@ -86,6 +86,24 @@ input:checked + .slider { background-color: var(--accent-color); }
     gap: 25px;
 }
 
+/* Projects section header (distinct from tags/filters) */
+.projects-section > h2 {
+    font-family: var(--font-mono);
+    color: var(--text-main);
+    margin: 0 0 18px 0;
+    font-size: 1.2rem;
+}
+
+/* Unified section titles for Projects, Skills, Education */
+#ui-projects-title,
+#ui-skills-title,
+#ui-education-title {
+    font-family: var(--font-mono);
+    color: var(--text-main);
+    margin: 0 0 18px 0;
+    font-size: 1.2rem;
+}
+
 .card {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
@@ -213,6 +231,22 @@ input:checked + .slider { background-color: var(--accent-color); }
     flex-direction: column;
     gap: 12px;
 }
+
+/* Category filters (sidebar) */
+.category-filters { margin-top: 12px; }
+.category-filters .filters-title { font-family: var(--font-mono); color: var(--text-dim); font-size: 0.85rem; margin-bottom: 8px; }
+.category-filters .filters-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+.cat-filter-item { margin: 0; }
+.cat-filter { display: inline-flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 8px; font-size: 0.85rem; cursor: pointer; transition: transform .08s ease, box-shadow .12s ease; }
+.cat-filter input { margin: 0; width: 14px; height: 14px; accent-color: currentColor; }
+.cat-filter:hover { transform: translateY(-1px); box-shadow: 0 6px 12px rgba(0,0,0,0.35); }
+.category-filters .btn-small { margin-top: 8px; background: transparent; color: var(--text-main); border: 1px solid var(--border-color); padding: 6px 8px; border-radius: 6px; cursor: pointer; }
+
+/* Selected state — slightly stronger background and subtle glow, keep text consistent */
+.cat-filter.selected { box-shadow: 0 8px 20px rgba(0,0,0,0.45); }
+.cat-filter.selected { filter: saturate(1.05); }
+.cat-filter.selected { background-color: rgba(255,255,255,0.04); }
+
 
 .nav-link {
     display: flex;
