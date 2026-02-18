@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const label = k.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
                     return `<div class="metric-item"><strong>${label}:</strong> ${v}</div>`;
                 }).join('');
-                metricsEl.innerHTML = `<h4>Metrics</h4>${metricsHtml}`;
+                metricsEl.innerHTML = `<h4>${labels.metrics || 'Metrics'}</h4>${metricsHtml}`;
             } else {
                 metricsEl.innerHTML = '';
             }
