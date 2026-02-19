@@ -4,5 +4,4 @@ dist/
 *.pyc
 .vscode/
 *.json.bak*
-portfolio.json
 projects.json
