@@ -85,7 +85,10 @@
 
 <script>
     window.currentLang = "{{ current_lang }}";
-    window.projectJsonUrl = "projects/{{ project_data.slug or project_data.title | lower | replace(' ', '-') }}-{{ current_lang }}.json";
+    // Inline JSON is provided below for static deployments without `dist/projects/` files.
+</script>
+<script id="project-data" type="application/json">
+{{ project_data | tojson }}
 </script>
 <script src="{{ static('js/project-detail.js') }}" defer></script>
 {% endblock %}

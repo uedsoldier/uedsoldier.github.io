@@ -1,4 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Prefer inline `#project-data` JSON (embedded at build time). Fall back to fetching `window.projectJsonUrl`.
+    const projectDataEl = document.getElementById('project-data');
+    if (projectDataEl && projectDataEl.textContent && projectDataEl.textContent.trim().length > 0) {
+        try {
+            const project = JSON.parse(projectDataEl.textContent);
+            renderProject(project);
+        } catch (e) {
+            console.error('Failed to parse inline project-data JSON:', e);
+        }
+        return;
+    }
+
     const jsonUrl = window.projectJsonUrl;
     if (!jsonUrl) return;
 

@@ -235,12 +235,9 @@ for lang_code, content in portfolio_data['languages'].items():
         (DIST_DIR / filename).write_text(min_project_html, encoding='utf-8')
         print(f'✔ Generated Project Detail: {filename}')
 
-        # Export per-project JSON for client-side fetching
-        try:
-            pjson_path = projects_dir / f"{project_slug}-{lang_code}.json"
-            pjson_path.write_text(json.dumps(project, ensure_ascii=False, indent=2), encoding='utf-8')
-        except Exception as e:
-            print(f"⚠ Failed to write project JSON for {project_slug}-{lang_code}: {e}")
+        # NOTE: per-project JSON files are intentionally NOT written anymore.
+        # The project detail pages embed their project JSON inline (see templates/project.html),
+        # so the `dist/projects/` JSON files are not required for the site to work.
 
         # Add to index list (lightweight)
         # produce a slightly richer index entry so the frontpage can show role/impact/preview
@@ -304,5 +301,23 @@ for file_path in STATIC_SRC.rglob('*'):
             target_path.write_text(rcssmin.cssmin(css_content), encoding='utf-8')
         else:
             shutil.copy2(file_path, target_path)
+
+# Copy robots.txt from data/ to dist/ so GitHub Pages receives it
+ROBOTS_SRC = BASE_DIR / 'data' / 'robots.txt'
+if ROBOTS_SRC.exists():
+    try:
+        shutil.copy2(ROBOTS_SRC, DIST_DIR / 'robots.txt')
+        print('✔ Copied robots.txt to dist/')
+    except Exception as e:
+        print(f"⚠ Failed to copy robots.txt: {e}")
+
+# Remove the `projects/` folder from the dist output (not needed when JSON is embedded)
+projects_dst = DIST_DIR / 'projects'
+if projects_dst.exists():
+    try:
+        shutil.rmtree(projects_dst)
+        print('✔ Removed dist/projects/ from build output')
+    except Exception as e:
+        print(f"⚠ Failed to remove dist/projects/: {e}")
 
 print('\n✅ Build completed successfully.')
